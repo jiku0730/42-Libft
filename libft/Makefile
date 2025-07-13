@@ -6,7 +6,7 @@
 #    By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/04 16:00:02 by kjikuhar          #+#    #+#              #
-#    Updated: 2025/07/01 14:22:48 by kei2003730       ###   ########.fr        #
+#    Updated: 2025/07/13 19:28:50 by kei2003730       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,5 +112,8 @@ fclean:		clean
 			@$(RM) $(NAME)
 
 re:			fclean all
+
+test:
+	$(MAKE) -C ctype test
 
 .PHONY:		all clean fclean re

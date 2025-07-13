@@ -1,0 +1,129 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    makeconfig                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/06/30 14:37:47 by kjikuhar          #+#    #+#              #
+#    Updated: 2025/07/13 19:42:32 by kei2003730       ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+#-----------------------------------------------------------------------------
+#> options
+#-----------------------------------------------------------------------------
+BLACK	:=	\033[30m
+RED		:=	\033[31m
+GREEN	:=	\033[32m
+YELLOW	:=	\033[33m
+BLUE	:=	\033[96m
+MAGENTA	:=	\033[38;5;206m
+CYAN	:=	\033[36m
+WHITE	:=	\033[37m
+RESET	:=	\033[0m
+BOLD	:=	\033[1m
+DIM		:=	\033[2m
+ITALIC	:=	\033[3m
+UNDER	:=	\033[4m
+BLINK	:=	\033[5m
+REVERSE	:=	\033[7m
+HIDDEN	:=	\033[8m
+PINK	:=	\033[35m
+
+#-----------------------------------------------------------------------------
+
+#▸ variables
+
+#-----------------------------------------------------------------------------
+
+# NAME		:=	template
+
+#─ compile config ────────────────────────────────────────────────────────────
+
+CC			:=	cc
+CFLAGS		:=	-Wall -Wextra -Werror -I. -Iincludes -I$(INCLUDE) 
+#─ directory name ────────────────────────────────────────────────────────────
+
+SRCDIR		:=	src
+OBJDIR		:=	obj
+INCLUDE		:=	includes .
+
+#─ sources & objects ─────────────────────────────────────────────────────────
+
+# SRC	:=	
+#object files
+
+OBJ	:=	$(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+
+#-----------------------------------------------------------------------------
+
+#▸ rules
+
+#-----------------------------------------------------------------------------
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	@ar rcs $@ $^
+	@echo "$(GREEN)$(BOLD)Compiled with $(CFLAGS)$(RESET)"
+	@echo "$(YELLOW)$(BOLD)========================================="
+	@echo "    You can use My $(NAME)!!"
+	@echo "=========================================$(RESET)"
+
+# compile object files
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@mkdir -p $(dir $@)
+	@echo "Compiled ✅ $(WHITE) $(BOLD) $^ $(RESET)"
+	@$(CC) $(CFLAGS) -c -o $@ $^
+
+# clean targets
+
+clean:
+	@echo "$(RED)$(BOLD)========================================="
+	@echo "    Cleaning up object files..."
+	@echo "=========================================$(RESET)"
+	@rm -rf $(OBJDIR)
+
+fclean: clean
+	@echo "$(RED)$(BOLD)========================================="
+	@echo "    Cleaning up library files..."
+	@echo "=========================================$(RESET)"
+	@rm -f $(NAME)
+
+re: fclean all
+
+# ノルムチェック
+norminette:
+	@echo "$(CYAN)$(BOLD)========================================="
+	@echo "    Checking 42 Norm..."
+	@echo "=========================================$(RESET)"
+	@norminette $(SRC)
+	@echo "$(GREEN)$(BOLD)Norm check completed!$(RESET)"
+
+
+ifeq ($(MAKECMDGOALS), test)
+# CFLAGS +=-g -fsanitize=address
+endif
+# リークチェック
+test: re norminette
+	@echo "$(MAGENTA)$(BOLD)========================================="
+	@echo "    Checking Memory Leaks..."
+	@echo "=========================================$(RESET)"
+	@$(CC) $(CFLAGS) $(TEST) -o testfile $(NAME)
+	@valgrind --leak-check=full ./testfile
+	@rm -f testfile
+	@echo "$(GREEN)$(BOLD)Leak check completed!$(RESET)"
+	@echo "$(GREEN)$(BOLD)========================================="
+	@echo "    All tests completed!"
+	@echo "=========================================$(RESET)"
+	$(MAKE) fclean
+
+# デバッグビルド（fsanitize付き）
+# debug: CFLAGS := -Wall -Wextra -Werror -Iincludes -Ilibft 
+# debug: CCFLAGS := -Wall -Wextra -Werror -Iincludes -Ilibft -lXext -lX11 -g -fsanitize=address
+# debug: re
+# 	@echo "$(YELLOW)$(BOLD)Debug build completed with fsanitize!$(RESET)"
+
+.PHONY: all clean fclean re norminette leak test 

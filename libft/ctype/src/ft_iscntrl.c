@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   ft_iscntrl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/11 18:12:36 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/05/11 18:14:44 by kjikuhar         ###   ########.fr       */
+/*   Created: 2025/07/13 17:44:13 by kei2003730        #+#    #+#             */
+/*   Updated: 2025/07/13 17:44:21 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_ctype.h"
 
-int	ft_isspace(const char c)
+int	ft_iscntrl(int c)
 {
-	return ((9 <= c && c <= 13) || c == 32);
+	return ((ft_ctype_table[(unsigned char)(c)] & FT_IS_CNTRL) != 0);
 }

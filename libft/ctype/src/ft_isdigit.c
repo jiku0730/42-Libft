@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 21:20:17 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/05/02 23:13:00 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/07/13 17:40:47 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(int c)
+#include "ft_ctype.h"
+
+int	ft_isdigit(int c)
 {
-	return ((unsigned)c - 0x20 < 0x5f);
+	return ((ft_ctype_table[(unsigned char)(c)] & FT_IS_DIGIT) != 0);
 }
-
-// #include <stdio.h>
-
-// int main(void)
-// {
-// 	for (int i = -5; i <= 258; i++)
-// 	{
-// 		char *str = (ft_isprint(i) == 1) ? "OKKK" : "NG";
-// 		printf("%3i, %4c : %2s\n", i,(char)i, str);
-// 	}
-// 	return (0);
-// }

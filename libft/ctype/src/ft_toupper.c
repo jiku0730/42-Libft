@@ -3,37 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 18:47:23 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/05/04 11:36:10 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/07/13 17:51:17 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_ctype.h"
 
 int	ft_toupper(int c)
 {
-	if ('a' <= c && c <= 'z')
+	if (ft_islower(c))
 		return (c + 'A' - 'a');
 	return (c);
 }
-
-// #include <stdio.h>
-// #include <ctype.h>
-
-// int main(void)
-// {
-// 	for (int i = 0; i < 26; i++)
-// 	{
-// 		printf("%2d :%c -> %c\n", i, (char)('a'+i),(char)ft_toupper('a'+i))
-// 		printf("%2d :%c -> %c\n", i, (char)('a'+i),(char)toupper('a'+i))
-// 	}
-// 	printf("\n");
-// 	for (int i = 0; i < 26; i++)
-// 	{
-// 		printf("%2d :%c -> %c\n", i, (char)('A'+i),(char)ft_toupper('A'+i))
-// 		printf("%2d :%c -> %c\n", i, (char)('A'+i),(char)toupper('A'+i))
-// 	}
-// 	return (0);
-// }
