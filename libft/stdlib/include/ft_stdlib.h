@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   ft_stdlib.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/01 14:15:00 by kei2003730       #+#    #+#             */
-/*   Updated: 2025/07/01 14:15:00 by kei2003730       ###   ########.fr       */
+/*   Created: 2025/07/13 19:53:07 by kei2003730        #+#    #+#             */
+/*   Updated: 2025/07/13 20:11:13 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_STDLIB_H
+# define FT_STDLIB_H
 
-int	ft_abs_int(int n)
-{
-	if (n < 0)
-		return (-n);
-	return (n);
-}
+#include <stddef.h>
 
-long	ft_abs_long(long n)
-{
-	if (n < 0)
-		return (-n);
-	return (n);
-}
+int ft_abs(int i);
+int ft_atoi(char  *str);
+void	*ft_calloc(size_t count, size_t size);
 
-long long	ft_abs_long_long(long long n)
-{
-	if (n < 0)
-		return (-n);
-	return (n);
-}
+#endif

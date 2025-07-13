@@ -1,8 +1,9 @@
 {
         "files.associations": {
-        "ctype.h": "c",
-        "makeconfig": "makefile"
-    },
+			"ctype.h": "c",
+			"makeconfig": "makefile",
+			"__stddef_null.h": "c"
+		},
     // ホワイトスペース（空白・タブ）の可視化
     "editor.renderWhitespace": "all",
 
