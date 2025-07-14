@@ -6,7 +6,7 @@
 #    By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/30 14:37:47 by kjikuhar          #+#    #+#              #
-#    Updated: 2025/07/14 12:40:12 by kei2003730       ###   ########.fr        #
+#    Updated: 2025/07/14 20:57:14 by kei2003730       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,10 +102,6 @@ norminette:
 	@norminette $(SRC)
 	@echo "$(GREEN)$(BOLD)Norm check completed!$(RESET)"
 
-
-ifeq ($(MAKECMDGOALS), test)
-# CFLAGS +=-g -fsanitize=address
-endif
 # リークチェック
 test: re norminette
 	@echo "$(MAGENTA)$(BOLD)========================================="
@@ -120,10 +116,52 @@ test: re norminette
 	@echo "=========================================$(RESET)"
 	$(MAKE) fclean
 
+# MAKECMDGOALS から "unit_test" を除いた残りを TARGETS に、
+# さらに先頭要素を FUNC に
+TARGETS := $(filter-out unit_test,$(MAKECMDGOALS))
+FUNC    := $(firstword $(TARGETS))
+
+.PHONY: unit_test
+unit_test: re
+	@if [ -z "$(FUNC)" ]; then \
+		printf "$(RED)$(BOLD)Error: please specify function name$(RESET)\n"; \
+		printf "$(YELLOW)Usage: make unit_test [function_name]$(RESET)\n"; \
+		exit 1; \
+	fi
+	@TEST_SRC=$(TESTDIR)/tst_$(FUNC).c; \
+	if [ ! -f $$TEST_SRC ]; then \
+	  printf "$(RED)$(BOLD)Error: $$TEST_SRC not found$(RESET)\n"; \
+	  exit 1; \
+	fi
+	@printf "$(BLUE)==== Testing $(FUNC) ====\n$(RESET)"
+	$(CC) $(CFLAGS) $(TESTDIR)/tst_$(FUNC).c -o test_$(FUNC) $(NAME)
+	@printf "$(MAGENTA)Running unit test for $(FUNC)...$(RESET)\n"
+	@valgrind --leak-check=full ./test_$(FUNC)
+	@rm -f test_$(FUNC)
+	@printf "$(GREEN)Test for $(FUNC) completed!$(RESET)\n"
+
+# 余計なターゲット（たとえば make unit_test ft_abs の "ft_abs"）を無視する
+%:
+	@:
+
+# テストファイル一覧表示
+list_tests:
+	@echo "$(CYAN)$(BOLD)========================================="
+	@echo "    Available Test Files"
+	@echo "=========================================$(RESET)"
+	@ls $(TESTDIR)/tst_*.c 2>/dev/null | sed 's|$(TESTDIR)/tst_||g' | sed 's|\.c||g' | while read func; do \
+		echo "$(GREEN)  $$func$(RESET)"; \
+	done || echo "$(RED)No test files found$(RESET)"
+	@echo "$(YELLOW)$(BOLD)Usage: make tset [function_name]$(RESET)"
+
 # デバッグビルド（fsanitize付き）
 # debug: CFLAGS := -Wall -Wextra -Werror -Iincludes -Ilibft
 # debug: CCFLAGS := -Wall -Wextra -Werror -Iincludes -Ilibft -lXext -lX11 -g -fsanitize=address
 # debug: re
 # 	@echo "$(YELLOW)$(BOLD)Debug build completed with fsanitize!$(RESET)"
 
-.PHONY: all clean fclean re norminette leak test
+# 引数を無視するためのダミーターゲット
+%:
+    @:
+
+.PHONY: all clean fclean re norminette test unit_test debug_tset list_tests

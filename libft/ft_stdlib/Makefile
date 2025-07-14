@@ -6,7 +6,7 @@
 #    By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/13 17:35:43 by kei2003730        #+#    #+#              #
-#    Updated: 2025/07/14 20:14:13 by kei2003730       ###   ########.fr        #
+#    Updated: 2025/07/14 20:51:44 by kei2003730       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,11 @@ SRC		:=	src/ft_abs.c \
 			src/ft_strtol.c \
 			src/ft_strtoll.c \
 			src/ft_strtoll_utils.c \
+			src/ft_strtoull.c \
 			src/ft_calloc.c
 
-
-
-
-TEST	:=	test/test.c
+TESTDIR		:=	test
+TEST		:=	$(TEST_DIR)/test.c
 INCLUDE	+=	-Iinclude
 
 include	../makeconfig
