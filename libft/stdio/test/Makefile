@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makeconfig                                         :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/06/30 14:37:47 by kjikuhar          #+#    #+#              #
-#    Updated: 2025/07/14 12:17:06 by kei2003730       ###   ########.fr        #
+#    Created: 2025/05/18 21:11:39 by kjikuhar          #+#    #+#              #
+#    Updated: 2025/07/14 11:51:44 by kei2003730       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,24 +37,55 @@ PINK	:=	\033[35m
 
 #-----------------------------------------------------------------------------
 
-# NAME		:=	template
+NAME		:=	ft_printf_utils.a
 
 #─ compile config ────────────────────────────────────────────────────────────
 
 CC			:=	cc
-CFLAGS		:=	-Wall -Wextra -Werror $(INCLUDE)
+CFLAGS		:=	-Wall -Wextra -Werror -Iincludes
+T_CFLAGS	:=	-Iincludes
+
 #─ directory name ────────────────────────────────────────────────────────────
 
 SRCDIR		:=	src
 OBJDIR		:=	obj
-INCLUDE		:=	-Iincludes -I.
 
 #─ sources & objects ─────────────────────────────────────────────────────────
+#sources
 
-# SRC	:=
+SRCS	:=	src/ft_utils.c \
+			src/ft_utils_strjoin.c \
+			src/ft_handle/ft_conv_info_handle.c \
+			src/ft_handle/ft_handle_char.c \
+			src/ft_handle/ft_handle_hex.c \
+			src/ft_handle/ft_handle_int.c \
+			src/ft_handle/ft_handle_int_u.c \
+			src/ft_handle/ft_handle_percentage.c \
+			src/ft_handle/ft_handle_ptr.c \
+			src/ft_handle/ft_handle_str.c \
+			src/ft_init/ft_conv_info_init.c \
+			src/ft_output/ft_conv_info_output.c \
+			src/ft_output/ft_output_char.c \
+			src/ft_output/ft_output_hex.c \
+			src/ft_output/ft_output_int.c \
+			src/ft_output/ft_output_percentage.c \
+			src/ft_output/ft_output_ptr.c \
+			src/ft_output/ft_output_str.c \
+			src/ft_output/ft_output_utils.c \
+			src/ft_set/ft_conv_info_set.c \
+			src/ft_set/ft_set_field_width.c \
+			src/ft_set/ft_set_flags.c \
+			src/ft_set/ft_set_precision.c \
+			src/ft_set/ft_set_specifier.c
+
 #object files
 
-OBJ	:=	$(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+OBJS	:=	$(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+
+#test
+
+TEST        := test/test_printf.c
+OBJ_T       := $(TEST:.c=.o)
 
 #-----------------------------------------------------------------------------
 
@@ -64,9 +95,9 @@ OBJ	:=	$(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@ar rcs $@ $^
-	@echo "$(GREEN)$(BOLD)Compiled with $(CFLAGS)$(RESET)"
+$(NAME): $(OBJS)
+	@echo "Compiled with $(GREEN)$(BOLD)$(CFLAGS)$(RESET)"
+	@ar rcs $(NAME) $(OBJS)
 	@echo "$(YELLOW)$(BOLD)========================================="
 	@echo "    You can use My $(NAME)!!"
 	@echo "=========================================$(RESET)"
@@ -81,49 +112,18 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 # clean targets
 
 clean:
-	@echo "$(RED)$(BOLD)========================================="
-	@echo "    Cleaning up object files..."
-	@echo "=========================================$(RESET)"
 	@rm -rf $(OBJDIR)
 
 fclean: clean
-	@echo "$(RED)$(BOLD)========================================="
-	@echo "    Cleaning up library files..."
-	@echo "=========================================$(RESET)"
 	@rm -f $(NAME)
 
 re: fclean all
 
-# ノルムチェック
-norminette:
-	@echo "$(CYAN)$(BOLD)========================================="
-	@echo "    Checking 42 Norm..."
-	@echo "=========================================$(RESET)"
-	@norminette $(SRC)
-	@echo "$(GREEN)$(BOLD)Norm check completed!$(RESET)"
+test: $(NAME)
+	@norminette $(SRCS)
+	@$(CC) $(T_CFLAGS) $(TEST) $(NAME) -o $(OBJ_T)
+	@valgrind --leak-check=full ./$(OBJ_T)
+	@rm $(OBJ_T)
+	fclean
 
-
-ifeq ($(MAKECMDGOALS), test)
-# CFLAGS +=-g -fsanitize=address
-endif
-# リークチェック
-test: re norminette
-	@echo "$(MAGENTA)$(BOLD)========================================="
-	@echo "    Checking Memory Leaks..."
-	@echo "=========================================$(RESET)"
-	@$(CC) $(CFLAGS) $(TEST) -o testfile $(NAME)
-	@valgrind --leak-check=full ./testfile
-	@rm -f testfile
-	@echo "$(GREEN)$(BOLD)Leak check completed!$(RESET)"
-	@echo "$(GREEN)$(BOLD)========================================="
-	@echo "    All tests completed!"
-	@echo "=========================================$(RESET)"
-	$(MAKE) fclean
-
-# デバッグビルド（fsanitize付き）
-# debug: CFLAGS := -Wall -Wextra -Werror -Iincludes -Ilibft
-# debug: CCFLAGS := -Wall -Wextra -Werror -Iincludes -Ilibft -lXext -lX11 -g -fsanitize=address
-# debug: re
-# 	@echo "$(YELLOW)$(BOLD)Debug build completed with fsanitize!$(RESET)"
-
-.PHONY: all clean fclean re norminette leak test
+.PHONY: all clean fclean re test

@@ -6,7 +6,7 @@
 #    By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/13 17:35:43 by kei2003730        #+#    #+#              #
-#    Updated: 2025/07/13 20:02:15 by kei2003730       ###   ########.fr        #
+#    Updated: 2025/07/14 12:17:17 by kei2003730       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,6 @@ SRC		:=	src/ft_isalnum.c \
 			src/ft_tolower.c
 
 TEST	:=	ft_ctype_test.c
-INCLUDE	+=	include
+INCLUDE	+=	-Iinclude
 
 include	../makeconfig
