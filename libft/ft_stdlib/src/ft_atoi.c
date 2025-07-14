@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 21:08:27 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/05/16 16:54:10 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/07/14 17:03:02 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_stdlib.h"
+
+static int	ft_isspace(int c)
+{
+	return ((c == ' ') || (c >= '\t' && c <= '\r'));
+}
+
+static int	ft_isdigit(int c)
+{
+	return ('0' <= c && c <= '9');
+}
 
 int	ft_atoi(const char *str)
 {
