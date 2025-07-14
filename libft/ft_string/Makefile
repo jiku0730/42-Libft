@@ -5,24 +5,40 @@
 #                                                     +:+ +:+         +:+      #
 #    By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/07/13 17:35:43 by kei2003730        #+#    #+#              #
-#    Updated: 2025/07/14 09:11:25 by kei2003730       ###   ########.fr        #
+#    Created: 2025/07/14 08:43:35 by kei2003730        #+#    #+#              #
+#    Updated: 2025/07/14 12:26:51 by kei2003730       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Variables
-SUBDIR	:=	strings
-NAME	:=	strings.a
-SRC		:=	src/ft_bcmp.c \
-			src/ft_bcopy.c \
-			src/ft_bzero.c \
-			src/ft_ffs.c \
-			src/ft_index.c \
-			src/ft_rindex.c \
-			src/ft_strcasecmp.c \
-			src/ft_strncasecmp.c
 
-TEST	:=	test/ft_bcmp.c
-INCLUDE	+=	include
+# Variables
+SUBDIR	:=	ft_string
+NAME	:=	ft_string.a
+SRC		:=	src/ft_strchr.c \
+			src/ft_strrchr.c \
+			src/ft_strncmp.c \
+			src/ft_strcpy.c \
+			src/ft_strcat.c \
+			src/ft_strlcpy.c \
+			src/ft_strlcat.c \
+			src/ft_strlen.c \
+			src/ft_strdup.c \
+			src/ft_strnstr.c \
+			src/ft_substr.c \
+			src/ft_strjoin.c \
+			src/ft_strtrim.c \
+			src/ft_strmapi.c \
+			src/ft_striteri.c \
+			src/ft_strrcmp.c \
+			src/ft_free_split.c \
+			src/ft_memset.c \
+			src/ft_memcpy.c \
+			src/ft_memmove.c \
+			src/ft_memchr.c \
+			src/ft_memcmp.c \
+			src/ft_memrchr.c
+
+# TEST	:=	ft_ctype_test.c
+INCLUDE	+=	-Iinclude
 
 include	../makeconfig
