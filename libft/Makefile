@@ -6,7 +6,7 @@
 #    By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/04 16:00:02 by kjikuhar          #+#    #+#              #
-#    Updated: 2025/07/14 08:58:09 by kei2003730       ###   ########.fr        #
+#    Updated: 2025/07/14 09:11:23 by kei2003730       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,68 +15,39 @@ RM		=	rm -f
 CFLAGS	=	-Wall -Wextra -Werror -I.
 NAME	=	libft.a
 
-SRCS	=	conversion/ft_atoi.c \
-			conversion/ft_itoa.c \
-			conversion/ft_tolower.c \
-			conversion/ft_toupper.c \
-			judge/ft_isalnum.c \
-			judge/ft_isalpha.c \
-			judge/ft_isascii.c \
-			judge/ft_isdigit.c \
-			judge/ft_isprint.c \
-			list/ft_lstadd_back.c \
-			list/ft_lstadd_front.c \
-			list/ft_lstclear.c \
-			list/ft_lstdelone.c \
-			list/ft_lstiter.c \
-			list/ft_lstlast.c \
-			list/ft_lstmap.c \
-			list/ft_lstnew.c \
-			list/ft_lstsize.c \
-			memory/ft_bzero.c \
-			memory/ft_calloc.c \
-			memory/ft_memchr.c \
-			memory/ft_memcmp.c \
-			memory/ft_memcpy.c \
-			memory/ft_memmove.c \
-			memory/ft_memrchr.c \
-			memory/ft_memset.c \
-			output/ft_putchar_fd.c \
-			output/ft_putendl_fd.c \
-			output/ft_putnbr_fd.c \
-			output/ft_putstr_fd.c \
-			string/ft_split.c \
-			string/ft_free_split.c \
-			string/ft_strchr.c \
-			string/ft_strdup.c \
-			string/ft_strrcmp.c \
-			string/ft_striteri.c \
-			string/ft_strjoin.c \
-			string/ft_strlcat.c \
-			string/ft_strlcpy.c \
-			string/ft_strlen.c \
-			string/ft_strmapi.c \
-			string/ft_strncmp.c \
-			string/ft_strnstr.c \
-			string/ft_strrchr.c \
-			string/ft_strtrim.c \
-			string/ft_substr.c \
-			original/ft_swap.c \
-			original/ft_max.c \
-			original/ft_min.c \
-			original/ft_isspace.c \
-			original/ft_abs.c \
-			get_next_line/get_next_line.c
+# サブライブラリ
+CTYPE_LIB	=	ctype/ctype.a
+STRINGS_LIB	=	strings/strings.a
+
+# 将来追加予定の個別ファイル（コメントアウト）
+# SRCS	=	conversion/ft_atoi.c \
+#			conversion/ft_itoa.c \
+#			...
 
 OBJS	=	$(SRCS:.c=.o)
 
 all:		$(NAME)
 
-$(NAME):	$(OBJS)
+# サブライブラリのビルド
+$(CTYPE_LIB):
+	@echo "$(CYAN)$(BOLD)Building ctype library...$(RESET)"
+	@$(MAKE) -C ctype
+
+$(STRINGS_LIB):
+	@echo "$(CYAN)$(BOLD)Building strings library...$(RESET)"
+	@$(MAKE) -C strings
+
+# メインライブラリの作成（サブライブラリのみ）
+$(NAME):	$(CTYPE_LIB) $(STRINGS_LIB)
+			@echo "$(MAGENTA)$(BOLD)Creating unified libft.a...$(RESET)"
+			@cp $(CTYPE_LIB) $(NAME)
+			@ar x $(STRINGS_LIB)
+			@ar rcs $(NAME) *.o
+			@$(RM) *.o
 			@echo "Compiled with $(GREEN)$(BOLD)$(CFLAGS)$(RESET)"
-			@ar crs $(NAME) $(OBJS)
 			@echo "$(YELLOW)$(BOLD)========================================="
 			@echo "        You can use My $(NAME)!!"
+			@echo "        (Including ctype + strings)"
 			@echo "=========================================$(RESET)"
 
 # =========================================
@@ -88,16 +59,29 @@ $(NAME):	$(OBJS)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $^
 
 clean:
-			@$(RM) $(OBJS)
+			@$(MAKE) -C ctype clean
+			@$(MAKE) -C strings clean
 
 fclean:		clean
 			@$(RM) $(NAME)
+			@$(MAKE) -C ctype fclean
+			@$(MAKE) -C strings fclean
 
 re:			fclean all
 
 test:
 	$(MAKE) -C ctype test
 
-.PHONY:		all clean fclean re
+.PHONY:		all clean fclean re test
 
-include ./makeconfig
+# カラーコード
+BLACK	:=	\033[30m
+RED		:=	\033[31m
+GREEN	:=	\033[32m
+YELLOW	:=	\033[33m
+BLUE	:=	\033[96m
+MAGENTA	:=	\033[38;5;206m
+CYAN	:=	\033[36m
+WHITE	:=	\033[37m
+RESET	:=	\033[0m
+BOLD	:=	\033[1m

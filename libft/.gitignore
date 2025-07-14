@@ -1,2 +1,3 @@
+obj/
 *.o
-libft.a
+*.a
