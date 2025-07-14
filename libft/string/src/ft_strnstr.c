@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 21:07:45 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/05/04 22:54:06 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/07/14 09:27:19 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_string.h"
 
 /* Locate substring in a string with length limit */
 char	*ft_strnstr(const char *big, const char *little, size_t len)

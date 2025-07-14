@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 18:16:23 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/05/05 20:02:01 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/07/14 09:25:08 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
 /* search by decrement loop */
 void	*ft_memrchr(const void *s, int c, size_t n)

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:36:41 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/05/04 21:59:35 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/07/14 09:25:12 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
 /* Undefined if s == NULL && n > 0. */
 void	*ft_memset(void *s, int c, size_t n)

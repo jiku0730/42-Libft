@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 21:03:19 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/05/05 18:16:21 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/07/14 09:27:30 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_string.h"
 
 /* Why: +1 so that '\0' is also searched per strrchr spec */
 char	*ft_strrchr(const char *s, int c)

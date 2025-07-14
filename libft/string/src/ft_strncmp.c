@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 22:22:54 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/05/04 22:17:52 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/07/14 09:27:10 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
 /* Compare two strings up to n characters */
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
