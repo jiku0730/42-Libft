@@ -5,24 +5,32 @@
 #                                                     +:+ +:+         +:+      #
 #    By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/07/13 17:35:43 by kei2003730        #+#    #+#              #
-#    Updated: 2025/07/14 08:54:45 by kei2003730       ###   ########.fr        #
+#    Created: 2025/07/14 08:43:35 by kei2003730        #+#    #+#              #
+#    Updated: 2025/07/14 08:44:23 by kei2003730       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Variables
-SUBDIR	:=	strings
-NAME	:=	strings.a
-SRC		:=	src/bcmp.c \
-			src/bcopy.c \
-			src/bzero.c \
-			src/ft_ffs.c \
-			src/ft_index.c \
-			src/ft_rindex.c \
-			src/ft_strcasecmp.c \
-			src/ft_strncasecmp.c
 
-TEST	:=	test/ft_bcmp.c
+# Variables
+SUBDIR	:=	ft_string
+NAME	:=	ft_string.a
+SRC		:=	src/ft_isalnum.c \
+			src/ft_isascii.c \
+			src/ft_iscntrl.c \
+			src/ft_isgraph.c \
+			src/ft_isprint.c \
+			src/ft_isspace.c \
+			src/ft_isxdigit.c \
+			src/ft_toupper.c \
+			src/ft_isalpha.c \
+			src/ft_isblank.c \
+			src/ft_isdigit.c \
+			src/ft_islower.c \
+			src/ft_ispunct.c \
+			src/ft_isupper.c \
+			src/ft_tolower.c
+
+# TEST	:=	ft_ctype_test.c
 INCLUDE	+=	include
 
 include	../makeconfig

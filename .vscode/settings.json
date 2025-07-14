@@ -2,7 +2,11 @@
         "files.associations": {
 			"ctype.h": "c",
 			"makeconfig": "makefile",
-			"__stddef_null.h": "c"
+			"__stddef_null.h": "c",
+			"syscall.h": "c",
+			"stdbool.h": "c",
+			"libft.h": "c",
+			"string": "c"
 		},
     // ホワイトスペース（空白・タブ）の可視化
     "editor.renderWhitespace": "all",

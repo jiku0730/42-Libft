@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test-bcmp.c                                        :+:      :+:    :+:   */
+/*   ft_getc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/14 08:54:50 by kei2003730        #+#    #+#             */
-/*   Updated: 2025/07/14 08:55:06 by kei2003730       ###   ########.fr       */
+/*   Created: 2025/07/13 21:00:11 by kei2003730        #+#    #+#             */
+/*   Updated: 2025/07/13 21:01:12 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "ft_stdio.h"
 
-int main(int argc, char const *argv[])
+int	ft_getc(FILE *stream)
 {
-	printf("This is a test for bcmp function.\n");
-	return 0;
+	return (ft_fgetc(stream));
 }
-

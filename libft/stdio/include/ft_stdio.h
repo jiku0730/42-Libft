@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test-bcmp.c                                        :+:      :+:    :+:   */
+/*   ft_stdio.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/14 08:54:50 by kei2003730        #+#    #+#             */
-/*   Updated: 2025/07/14 08:55:06 by kei2003730       ###   ########.fr       */
+/*   Created: 2025/07/13 20:59:56 by kei2003730        #+#    #+#             */
+/*   Updated: 2025/07/13 21:00:04 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#ifndef FT_STDIO_H
+# define FT_STDIO_H
 
-int main(int argc, char const *argv[])
-{
-	printf("This is a test for bcmp function.\n");
-	return 0;
-}
+# include <stdio.h>
 
+int		ft_getchar(void);
+int		ft_putc(int c, FILE *stream);
+int		ft_puts(const char *s, FILE *stream);
+
+#endif

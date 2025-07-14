@@ -6,7 +6,7 @@
 #    By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/04 16:00:02 by kjikuhar          #+#    #+#              #
-#    Updated: 2025/07/13 19:28:50 by kei2003730       ###   ########.fr        #
+#    Updated: 2025/07/14 08:58:09 by kei2003730       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,24 +68,6 @@ SRCS	=	conversion/ft_atoi.c \
 			original/ft_abs.c \
 			get_next_line/get_next_line.c
 
-BLACK	:=	\033[30m
-RED		:=	\033[31m
-GREEN	:=	\033[32m
-YELLOW	:=	\033[33m
-BLUE	:=	\033[96m
-MAGENTA	:=	\033[38;5;206m
-CYAN	:=	\033[36m
-WHITE	:=	\033[37m
-RESET	:=	\033[0m
-BOLD	:=	\033[1m
-DIM		:=	\033[2m
-ITALIC	:=	\033[3m
-UNDER	:=	\033[4m
-BLINK	:=	\033[5m
-REVERSE	:=	\033[7m
-HIDDEN	:=	\033[8m
-PINK	:=	\033[35m
-
 OBJS	=	$(SRCS:.c=.o)
 
 all:		$(NAME)
@@ -117,3 +99,5 @@ test:
 	$(MAKE) -C ctype test
 
 .PHONY:		all clean fclean re
+
+include ./makeconfig
