@@ -6,7 +6,7 @@
 /*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 19:53:07 by kei2003730        #+#    #+#             */
-/*   Updated: 2025/07/14 19:39:26 by kei2003730       ###   ########.fr       */
+/*   Updated: 2025/07/14 20:12:32 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,26 @@ typedef struct
 int			ft_abs(int i);
 long		ft_labs(long i);
 long long	ft_llabs(long long i);
+
 ft_div_t	ft_div(int numer, int denom);
 ft_ldiv_t	ft_ldiv(long numer, long denom);
 ft_lldiv_t	ft_lldiv(long long numer, long long denom);
-int			ft_atoi(const char *str);
+
+int			ft_atoi(const char *nptr);
+long		ft_atol(const char *nptr);
+long long	ft_atoll(const char *nptr);
+long		ft_strtol(const char *nptr, char **endptr, int base);
+long long	ft_strtoll(const char *nptr, char **endptr, int base);
+
 void		*ft_calloc(size_t count, size_t size);
 
-
-int				ft_isspace_utils(char c);
-int				char_to_digit_utils(char c);
-int				check_overflow(unsigned long long acc, int digit, int base);
-char			*preprocess_input(const char *nptr, int *negative, int *base);
-int				convert_digits(const char **s, int base,
+/* ft_strtoll_utils.c */
+int			ft_isspace_utils(char c);
+int			char_to_digit_utils(char c);
+int			check_overflow(unsigned long long acc, int digit, int base);
+char		*preprocess_input(const char *nptr, int *negative, int *base);
+int			convert_digits(const char **s, int base,
 									unsigned long long *acc);
-long long		finalize_result(unsigned long long acc, int negative,
+long long	finalize_result(unsigned long long acc, int negative,
 					int overflow);
-long long		ft_strtoll(const char *nptr, char **endptr, int base);
 #endif
