@@ -12,9 +12,8 @@
 
 #include <stdio.h>
 
-int main(int argc, char const *argv[])
+int	main(int argc, char const *argv[])
 {
 	printf("This is a test for bcmp function.\n");
-	return 0;
+	return (0);
 }
-

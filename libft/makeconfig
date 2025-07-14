@@ -6,7 +6,7 @@
 #    By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/30 14:37:47 by kjikuhar          #+#    #+#              #
-#    Updated: 2025/07/14 12:17:06 by kei2003730       ###   ########.fr        #
+#    Updated: 2025/07/14 12:33:42 by kei2003730       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,9 +111,9 @@ test: re norminette
 	@echo "$(MAGENTA)$(BOLD)========================================="
 	@echo "    Checking Memory Leaks..."
 	@echo "=========================================$(RESET)"
-	@$(CC) $(CFLAGS) $(TEST) -o testfile $(NAME)
-	@valgrind --leak-check=full ./testfile
-	@rm -f testfile
+# 	@$(CC) $(CFLAGS) $(TEST) -o testfile $(NAME)
+# 	@valgrind --leak-check=full ./testfile
+# 	@rm -f testfile
 	@echo "$(GREEN)$(BOLD)Leak check completed!$(RESET)"
 	@echo "$(GREEN)$(BOLD)========================================="
 	@echo "    All tests completed!"

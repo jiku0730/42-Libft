@@ -178,12 +178,12 @@
 // 	#はx Xにだけ作用。 */
 
 /* flag == 'c' について調べる。 */
-	// printf("flag == 'c' について。\n");
-	// for (int i = -258; i < 258; i++)
-	// {
-	// 	printf("%d", printf("%c\n"));
-	// }
-	// return (0);
+// printf("flag == 'c' について。\n");
+// for (int i = -258; i < 258; i++)
+// {
+// 	printf("%d", printf("%c\n"));
+// }
+// return (0);
 
 /* flag == 's'について調べる。 */
 // printf("%-10s\n", "42Tokyo");

@@ -6,7 +6,7 @@
 #    By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/04 16:00:02 by kjikuhar          #+#    #+#              #
-#    Updated: 2025/07/14 12:31:56 by kei2003730       ###   ########.fr        #
+#    Updated: 2025/07/14 12:32:57 by kei2003730       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,6 +91,9 @@ re:			fclean all
 
 test:
 	$(MAKE) -C ft_ctype test
+	$(MAKE) -C ft_strings test
+	$(MAKE) -C ft_string test
+	$(MAKE) -C ft_stdio test
 
 .PHONY:		all clean fclean re test
 

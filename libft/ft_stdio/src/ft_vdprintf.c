@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dprintf.c                                        :+:      :+:    :+:   */
+/*   ft_vdprintf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 14:20:36 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/07/14 10:40:44 by kei2003730       ###   ########.fr       */
+/*   Created: 2025/07/14 12:34:39 by kei2003730        #+#    #+#             */
+/*   Updated: 2025/07/14 12:34:40 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static int	conversion_information(int fd, const char **format, va_list *args)
 	cleanup_conv_info(conv_info);
 	return (rtv);
 }
-
 
 int	ft_vdprintf(int fd, const char *format, va_list *ap)
 {
