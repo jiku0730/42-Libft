@@ -6,7 +6,7 @@
 #    By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/13 17:35:43 by kei2003730        #+#    #+#              #
-#    Updated: 2025/07/14 17:00:33 by kei2003730       ###   ########.fr        #
+#    Updated: 2025/07/14 19:29:07 by kei2003730       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,10 @@ SRC		:=	src/ft_llabs.c \
 			src/ft_atoi.c \
 			src/ft_div.c \
 			src/ft_ldiv.c \
-			src/ft_lldiv.c
+			src/ft_lldiv.c \
+			src/ft_strtoll.c \
+			src/ft_strtoll_utils.c
+
 
 TEST	:=	test/test.c
 INCLUDE	+=	-Iinclude

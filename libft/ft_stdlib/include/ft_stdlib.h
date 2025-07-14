@@ -6,7 +6,7 @@
 /*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 19:53:07 by kei2003730        #+#    #+#             */
-/*   Updated: 2025/07/14 17:04:40 by kei2003730       ###   ########.fr       */
+/*   Updated: 2025/07/14 19:39:26 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,14 @@ ft_lldiv_t	ft_lldiv(long long numer, long long denom);
 int			ft_atoi(const char *str);
 void		*ft_calloc(size_t count, size_t size);
 
+
+int				ft_isspace_utils(char c);
+int				char_to_digit_utils(char c);
+int				check_overflow(unsigned long long acc, int digit, int base);
+char			*preprocess_input(const char *nptr, int *negative, int *base);
+int				convert_digits(const char **s, int base,
+									unsigned long long *acc);
+long long		finalize_result(unsigned long long acc, int negative,
+					int overflow);
+long long		ft_strtoll(const char *nptr, char **endptr, int base);
 #endif
