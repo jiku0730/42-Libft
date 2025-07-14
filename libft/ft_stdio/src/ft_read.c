@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fgetc.c                                         :+:      :+:    :+:   */
+/*   ft_read.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/13 21:01:15 by kei2003730        #+#    #+#             */
-/*   Updated: 2025/07/14 13:54:58 by kei2003730       ###   ########.fr       */
+/*   Created: 2025/07/14 13:53:05 by kei2003730        #+#    #+#             */
+/*   Updated: 2025/07/14 13:54:47 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stdio.h"
-#define _GNU_SOURCE
-#include <unistd.h>
+#include <sys/syscall.h>
+#include <errno.h>
 
-int	ft_fgetc(FILE *stream)
+/* reimplimentation of read function */
+ssize_t	ft_read(int fd, void *buf, size_t count)
 {
-	unsigned char	c;
+	long	ret;
 
-	ssize_t bytes_read;
-	bytes_read = fread(&c, 1, 1, stream);
-	if (bytes_read == 1)
-		return (c);
-	return (EOF);
+	ret = syscall(SYS_read, fd, buf, count);
+	if (ret < 0)
+	{
+		errno = -ret;
+		return (-1);
+	}
+	return (ret);
 }
+

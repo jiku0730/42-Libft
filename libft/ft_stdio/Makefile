@@ -6,7 +6,7 @@
 #    By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/13 17:35:43 by kei2003730        #+#    #+#              #
-#    Updated: 2025/07/14 12:19:55 by kei2003730       ###   ########.fr        #
+#    Updated: 2025/07/14 16:45:55 by kei2003730       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,12 @@ SRC		:=	src/ft_printf_utils/ft_utils.c \
 			src/ft_vdprintf.c \
 			src/ft_getc.c \
 			src/ft_getchar.c \
-			src/ft_fgetc.c
+			src/ft_fgetc.c \
+			src/ft_fwrite.c \
+			src/ft_putchar.c \
+			src/ft_fflush.c \
+			src/ft_read.c \
+			src/ft_write.c
 
 # TEST	:=	test/ft_stdio_test.c
 INCLUDE	:=	-Iinclude
