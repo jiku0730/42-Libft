@@ -6,7 +6,7 @@
 #    By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/30 14:37:47 by kjikuhar          #+#    #+#              #
-#    Updated: 2025/07/14 20:57:14 by kei2003730       ###   ########.fr        #
+#    Updated: 2025/07/16 16:36:10 by kei2003730       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,6 +122,8 @@ TARGETS := $(filter-out unit_test,$(MAKECMDGOALS))
 FUNC    := $(firstword $(TARGETS))
 
 .PHONY: unit_test
+
+TEST_FRAME_DIR := -I../test_frame
 unit_test: re
 	@if [ -z "$(FUNC)" ]; then \
 		printf "$(RED)$(BOLD)Error: please specify function name$(RESET)\n"; \
@@ -134,7 +136,7 @@ unit_test: re
 	  exit 1; \
 	fi
 	@printf "$(BLUE)==== Testing $(FUNC) ====\n$(RESET)"
-	$(CC) $(CFLAGS) $(TESTDIR)/tst_$(FUNC).c -o test_$(FUNC) $(NAME)
+	@$(CC) $(CFLAGS) $(TEST_FRAME_DIR) $(TESTDIR)/tst_$(FUNC).c -o test_$(FUNC) $(NAME)
 	@printf "$(MAGENTA)Running unit test for $(FUNC)...$(RESET)\n"
 	@valgrind --leak-check=full ./test_$(FUNC)
 	@rm -f test_$(FUNC)
