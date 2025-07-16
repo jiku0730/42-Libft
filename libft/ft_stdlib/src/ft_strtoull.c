@@ -6,7 +6,7 @@
 /*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 20:25:00 by kei2003730        #+#    #+#             */
-/*   Updated: 2025/07/14 20:28:55 by kei2003730       ###   ########.fr       */
+/*   Updated: 2025/07/16 17:15:59 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ unsigned long long	ft_strtoull(const char *nptr, char **endptr, int base)
 	if (endptr)
 		*endptr = (char *)s;
 	if (negative)
-		return (ULLONG_MAX);
+		return ((unsigned long long)(-(long long)acc));
 	if (overflow)
 		return (ULLONG_MAX);
 	return (acc);

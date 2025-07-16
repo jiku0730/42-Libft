@@ -6,7 +6,7 @@
 /*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 19:53:07 by kei2003730        #+#    #+#             */
-/*   Updated: 2025/07/14 20:58:00 by kei2003730       ###   ########.fr       */
+/*   Updated: 2025/07/16 16:55:10 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ ft_lldiv_t	ft_lldiv(long long numer, long long denom);
 int			ft_atoi(const char *nptr);
 long		ft_atol(const char *nptr);
 long long	ft_atoll(const char *nptr);
+char		*ft_itoa(int n);
 long		ft_strtol(const char *nptr, char **endptr, int base);
 long long	ft_strtoll(const char *nptr, char **endptr, int base);
 unsigned long long	ft_strtoull(const char *nptr, char **endptr, int base);
