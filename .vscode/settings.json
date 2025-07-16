@@ -9,7 +9,8 @@
 		"libft.h": "c",
 		"string": "c",
 		"unistd.h": "c",
-		"unistd_64.h": "c"
+		"unistd_64.h": "c",
+		"limits.h": "c"
 	},
 	// ホワイトスペース（空白・タブ）の可視化
 	"editor.renderWhitespace": "all",
