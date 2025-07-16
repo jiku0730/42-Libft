@@ -6,7 +6,7 @@
 #    By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/30 14:37:47 by kjikuhar          #+#    #+#              #
-#    Updated: 2025/07/16 17:33:16 by kei2003730       ###   ########.fr        #
+#    Updated: 2025/07/16 18:25:17 by kei2003730       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,54 +32,45 @@ HIDDEN	:=	\033[8m
 PINK	:=	\033[35m
 
 #-----------------------------------------------------------------------------
-
 #▸ variables
-
 #-----------------------------------------------------------------------------
-
-# NAME		:=	template
+NAME		:=	$(LIB_NAME).a
 
 #─ compile config ────────────────────────────────────────────────────────────
-
 CC			:=	cc
+INCLUDE		:=	-Iincludes
 CFLAGS		:=	-Wall -Wextra -Werror $(INCLUDE)
-#─ directory name ────────────────────────────────────────────────────────────
 
-SRCDIR		:=	src
-OBJDIR		:=	obj
-INCLUDE		:=	-Iincludes -I.
+#─ directory name ────────────────────────────────────────────────────────────
+SRCDIR			:=	src
+OBJDIR			:=	obj
+TESTDIR			:=	test
+TEST_FRAME_DIR	:=	-I../test_frame
 
 #─ sources & objects ─────────────────────────────────────────────────────────
-
-# SRC	:=
-#object files
-
-OBJ	:=	$(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+# source files
+SRC			:=	$(addprefix $(SRCDIR)/, $(SRC_FILES))
+# object files
+OBJ			:=	$(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
 #-----------------------------------------------------------------------------
-
 #▸ rules
-
 #-----------------------------------------------------------------------------
-
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@ar rcs $@ $^
 	@echo "$(GREEN)$(BOLD)Compiled with $(CFLAGS)$(RESET)"
+	@ar rcs $@ $^
 	@echo "$(YELLOW)$(BOLD)========================================="
 	@echo "    You can use My $(NAME)!!"
 	@echo "=========================================$(RESET)"
 
-# compile object files
-
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $(dir $@)
 	@echo "Compiled ✅ $(WHITE) $(BOLD) $^ $(RESET)"
-	@$(CC) $(CFLAGS) -c -o $@ $^
+	@$(CC) $(CFLAGS) -c  $^ -o $@
 
 # clean targets
-
 clean:
 	@echo "$(RED)$(BOLD)========================================="
 	@echo "    Cleaning up object files..."
@@ -102,71 +93,8 @@ norminette:
 	@norminette $(SRC)
 	@echo "$(GREEN)$(BOLD)Norm check completed!$(RESET)"
 
-# リークチェック
-test: re norminette
-	@echo "$(MAGENTA)$(BOLD)========================================="
-	@echo "    Checking Memory Leaks..."
-	@echo "=========================================$(RESET)"
-	@$(CC) $(CFLAGS) $(TEST) -o testfile $(NAME)
-	@valgrind --leak-check=full ./testfile
-	@rm -f testfile
-	@echo "$(GREEN)$(BOLD)Leak check completed!$(RESET)"
-	@echo "$(GREEN)$(BOLD)========================================="
-	@echo "    All tests completed!"
-	@echo "=========================================$(RESET)"
-	$(MAKE) fclean
-
-# MAKECMDGOALS から "unit_test" を除いた残りを TARGETS に、
-# さらに先頭要素を FUNC に
-TARGETS := $(filter-out unit_test,$(MAKECMDGOALS))
-FUNC    := $(firstword $(TARGETS))
-
-.PHONY: unit_test
-
-TEST_FRAME_DIR := -I../test_frame
-unit_test: re
-	@if [ -z "$(FUNC)" ]; then \
-		printf "$(RED)$(BOLD)Error: please specify function name$(RESET)\n"; \
-		printf "$(YELLOW)Usage: make unit_test [function_name]$(RESET)\n"; \
-		exit 1; \
-	fi
-	@TEST_SRC=$(TESTDIR)/tst_$(FUNC).c; \
-	if [ ! -f $$TEST_SRC ]; then \
-	  printf "$(RED)$(BOLD)Error: $$TEST_SRC not found$(RESET)\n"; \
-	  exit 1; \
-	fi
-	@printf "$(BLUE)==== Testing $(FUNC) ====\n$(RESET)"
-	@$(CC) $(CFLAGS) $(TEST_FRAME_DIR) $(TESTDIR)/tst_$(FUNC).c -o test_$(FUNC) $(NAME)
-	@printf "$(MAGENTA)Running unit test for $(FUNC)...$(RESET)\n"
-	@valgrind --leak-check=full ./test_$(FUNC)
-	@rm -f test_$(FUNC)
-	@printf "$(GREEN)Test for $(FUNC) completed!$(RESET)\n"
-
-# 余計なターゲット（たとえば make unit_test ft_abs の "ft_abs"）を無視する
-%:
-	@:
-
-# テストファイル一覧表示
-list_tests:
-	@echo "$(CYAN)$(BOLD)========================================="
-	@echo "    Available Test Files"
-	@echo "=========================================$(RESET)"
-	@ls $(TESTDIR)/tst_*.c 2>/dev/null | sed 's|$(TESTDIR)/tst_||g' | sed 's|\.c||g' | while read func; do \
-		echo "$(GREEN)  $$func$(RESET)"; \
-	done || echo "$(RED)No test files found$(RESET)"
-	@echo "$(YELLOW)$(BOLD)Usage: make tset [function_name]$(RESET)"
-
-# デバッグビルド（fsanitize付き）
-# debug: CFLAGS := -Wall -Wextra -Werror -Iincludes -Ilibft
-# debug: CCFLAGS := -Wall -Wextra -Werror -Iincludes -Ilibft -lXext -lX11 -g -fsanitize=address
-# debug: re
-# 	@echo "$(YELLOW)$(BOLD)Debug build completed with fsanitize!$(RESET)"
-
-# 引数を無視するためのダミーターゲット
-%:
-    @:
-
-test_all: re
+# test
+test: re
 	@echo "$(CYAN)$(BOLD)========================================="
 	@echo "    Running All Unit Tests"
 	@echo "=========================================$(RESET)"
@@ -210,4 +138,41 @@ test_all: re
 		exit 1; \
 	fi
 
-.PHONY: all clean fclean re norminette test unit_test debug_tset list_tests test_all
+# MAKECMDGOALS から "unit_test" を除いた残りを TARGETS に、
+# さらに先頭要素を FUNC に
+TARGETS := $(filter-out unit_test,$(MAKECMDGOALS))
+FUNC    := $(firstword $(TARGETS))
+
+unit_test: re
+	@if [ -z "$(FUNC)" ]; then \
+		printf "$(RED)$(BOLD)Error: please specify function name$(RESET)\n"; \
+		printf "$(YELLOW)Usage: make unit_test [function_name]$(RESET)\n"; \
+		exit 1; \
+	fi
+	@TEST_SRC=$(TESTDIR)/tst_$(FUNC).c; \
+	if [ ! -f $$TEST_SRC ]; then \
+	  printf "$(RED)$(BOLD)Error: $$TEST_SRC not found$(RESET)\n"; \
+	  exit 1; \
+	fi
+	@printf "$(BLUE)==== Testing $(FUNC) ====\n$(RESET)"
+	@$(CC) $(CFLAGS) $(TEST_FRAME_DIR) $(TESTDIR)/tst_$(FUNC).c -o test_$(FUNC) $(NAME)
+	@printf "$(MAGENTA)Running unit test for $(FUNC)...$(RESET)\n"
+	@valgrind --leak-check=full ./test_$(FUNC)
+	@rm -f test_$(FUNC)
+	@printf "$(GREEN)Test for $(FUNC) completed!$(RESET)\n"
+
+# テストファイル一覧表示
+list_tests:
+	@echo "$(CYAN)$(BOLD)========================================="
+	@echo "    Available Test Files"
+	@echo "=========================================$(RESET)"
+	@ls $(TESTDIR)/tst_*.c 2>/dev/null | sed 's|$(TESTDIR)/tst_||g' | sed 's|\.c||g' | while read func; do \
+		echo "$(GREEN)  $$func$(RESET)"; \
+	done || echo "$(RED)No test files found$(RESET)"
+	@echo "$(YELLOW)$(BOLD)Usage: make tset [function_name]$(RESET)"
+
+# 引数を無視するためのダミーターゲット （たとえば make unit_test ft_abs の "ft_abs"を無視する）
+%:
+    @:
+
+.PHONY: all clean fclean re norminette test unit_test list_tests
