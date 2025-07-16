@@ -5,97 +5,132 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/14 19:59:19 by kei2003730        #+#    #+#             */
-/*   Updated: 2025/07/14 20:54:03 by kei2003730       ###   ########.fr       */
+/*   Created: 2025/07/16 16:04:22 by kei2003730        #+#    #+#             */
+/*   Updated: 2025/07/16 16:23:52 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stdlib.h"
+#include "test_framework.h"
+#include <errno.h>
 #include <limits.h>
-#include <stdio.h>
+#include <stdlib.h>
+
+TEST_INIT();
+
+static void	test_basic_conversion(void)
+{
+	TEST_SECTION("Basic Decimal Conversion");
+	ASSERT_EQ(123ULL, ft_strtoull("123", NULL, 10), "%llu");
+	ASSERT_EQ(456ULL, ft_strtoull("456", NULL, 10), "%llu");
+	ASSERT_EQ(789ULL, ft_strtoull("+789", NULL, 10), "%llu");
+	ASSERT_EQ(0ULL, ft_strtoull("0", NULL, 10), "%llu");
+}
+
+static void	test_base_conversion(void)
+{
+	TEST_SECTION("Different Base Conversion");
+	ASSERT_EQ(5ULL, ft_strtoull("101", NULL, 2), "%llu");      // binary
+	ASSERT_EQ(511ULL, ft_strtoull("777", NULL, 8), "%llu");    // octal
+	ASSERT_EQ(255ULL, ft_strtoull("ff", NULL, 16), "%llu");    // hex lowercase
+	ASSERT_EQ(255ULL, ft_strtoull("FF", NULL, 16), "%llu");    // hex uppercase
+	ASSERT_EQ(291ULL, ft_strtoull("0x123", NULL, 16), "%llu");
+		// hex with prefix
+}
+
+static void	test_auto_base_detection(void)
+{
+	TEST_SECTION("Auto Base Detection (base=0)");
+	ASSERT_EQ(123ULL, ft_strtoull("123", NULL, 0), "%llu");   // decimal
+	ASSERT_EQ(83ULL, ft_strtoull("0123", NULL, 0), "%llu");   // octal
+	ASSERT_EQ(291ULL, ft_strtoull("0x123", NULL, 0), "%llu"); // hex
+	ASSERT_EQ(291ULL, ft_strtoull("0X123", NULL, 0), "%llu"); // hex uppercase
+}
+
+static void	test_endptr(void)
+{
+	char				*endptr;
+	unsigned long long	result;
+
+	TEST_SECTION("End Pointer Tests");
+	result = ft_strtoull("123abc", &endptr, 10);
+	ASSERT_EQ(123ULL, result, "%llu");
+	ASSERT_STR_EQ("abc", endptr);
+	result = ft_strtoull("  456def", &endptr, 10);
+	ASSERT_EQ(456ULL, result, "%llu");
+	ASSERT_STR_EQ("def", endptr);
+	result = ft_strtoull("", &endptr, 10);
+	ASSERT_EQ(0ULL, result, "%llu");
+	ASSERT_STR_EQ("", endptr);
+}
+
+static void	test_whitespace(void)
+{
+	TEST_SECTION("Whitespace Handling");
+	ASSERT_EQ(123ULL, ft_strtoull(" \t123", NULL, 10), "%llu");
+	ASSERT_EQ(456ULL, ft_strtoull("  456", NULL, 10), "%llu");
+	ASSERT_EQ(123ULL, ft_strtoull("  +123", NULL, 10), "%llu");
+}
+
+static void	test_error_cases(void)
+{
+	char				*endptr;
+	unsigned long long	result;
+
+	TEST_SECTION("Error Cases");
+	// Invalid base
+	result = ft_strtoull("123", &endptr, 1);
+	ASSERT_EQ(0ULL, result, "%llu");
+	result = ft_strtoull("123", &endptr, 37);
+	ASSERT_EQ(0ULL, result, "%llu");
+	// No valid digits
+	result = ft_strtoull("abc", &endptr, 10);
+	ASSERT_EQ(0ULL, result, "%llu");
+	ASSERT_STR_EQ("abc", endptr);
+}
+
+static void	test_overflow(void)
+{
+	TEST_SECTION("Overflow Tests");
+	// ULLONG_MAX
+	ASSERT_EQ(ULLONG_MAX, ft_strtoull("18446744073709551615", NULL, 10),
+		"%llu");
+	// Overflow should return ULLONG_MAX
+	ASSERT_EQ(ULLONG_MAX, ft_strtoull("18446744073709551616", NULL, 10),
+		"%llu");
+	ASSERT_EQ(ULLONG_MAX, ft_strtoull("99999999999999999999", NULL, 10),
+		"%llu");
+}
+
+static void	test_negative_numbers(void)
+{
+	unsigned long long	result1;
+	unsigned long long	result2;
+	unsigned long long	std_result1;
+	unsigned long long	std_result2;
+
+	TEST_SECTION("Negative Numbers (Should Overflow)");
+	// Negative numbers should wrap around or return ULLONG_MAX
+	result1 = ft_strtoull("-1", NULL, 10);
+	result2 = ft_strtoull("-123", NULL, 10);
+	// Check if it behaves like standard library
+	std_result1 = strtoull("-1", NULL, 10);
+	std_result2 = strtoull("-123", NULL, 10);
+	ASSERT_EQ(std_result1, result1, "%llu");
+	ASSERT_EQ(std_result2, result2, "%llu");
+}
 
 int	main(void)
 {
-	char				*endptr;
-	unsigned long long	ull_result;
-
-    /* Test ft_strtoull */
-    printf("\n=== Testing ft_strtoull ===\n");
-    /* Basic decimal tests */
-    printf("strtoull(\"123\", NULL, 10) = %llu\n", ft_strtoull("123", NULL, 10));
-    printf("strtoull(\"456\", NULL, 10) = %llu\n", ft_strtoull("456", NULL, 10));
-    printf("strtoull(\"+789\", NULL, 10) = %llu\n", ft_strtoull("+789", NULL, 10));
-
-    /* Negative number tests (should return ULLONG_MAX) */
-    printf("strtoull(\"-123\", NULL, 10) = %llu (ERANGE)\n", ft_strtoull("-123", NULL, 10));
-    printf("strtoull(\"-1\", NULL, 10) = %llu (ERANGE)\n", ft_strtoull("-1", NULL, 10));
-
-    /* Auto base detection (base = 0) */
-    printf("strtoull(\"123\", NULL, 0) = %llu (decimal)\n", ft_strtoull("123", NULL, 0));
-    printf("strtoull(\"0123\", NULL, 0) = %llu (octal)\n", ft_strtoull("0123", NULL, 0));
-    printf("strtoull(\"0x123\", NULL, 0) = %llu (hex)\n", ft_strtoull("0x123", NULL, 0));
-    printf("strtoull(\"0X123\", NULL, 0) = %llu (hex)\n", ft_strtoull("0X123", NULL, 0));
-
-    /* Different bases */
-    printf("strtoull(\"101\", NULL, 2) = %llu (binary)\n", ft_strtoull("101", NULL, 2));
-    printf("strtoull(\"777\", NULL, 8) = %llu (octal)\n", ft_strtoull("777", NULL, 8));
-    printf("strtoull(\"ff\", NULL, 16) = %llu (hex)\n", ft_strtoull("ff", NULL, 16));
-    printf("strtoull(\"FF\", NULL, 16) = %llu (hex)\n", ft_strtoull("FF", NULL, 16));
-    printf("strtoull(\"0xFF\", NULL, 16) = %llu (hex with prefix)\n",
-        ft_strtoull("0xFF", NULL, 16));
-
-    /* Whitespace handling */
-    printf("strtoull(\" \t123\", NULL, 10) = %llu\n", ft_strtoull(" \t123", NULL, 10));
-    printf("strtoull(\"  456\", NULL, 10) = %llu\n", ft_strtoull("  456", NULL, 10));
-
-    /* endptr tests */
-    ull_result = ft_strtoull("123abc", &endptr, 10);
-    printf("strtoull(\"123abc\", &endptr, 10) = %llu, endptr = \"%s\"\n", ull_result, endptr);
-
-    ull_result = ft_strtoull("  456def", &endptr, 10);
-    printf("strtoull(\"  456def\", &endptr, 10) = %llu, endptr = \"%s\"\n", ull_result, endptr);
-
-    /* Error cases */
-    ull_result = ft_strtoull("", &endptr, 10);
-    printf("strtoull(\"\", &endptr, 10) = %llu, endptr = \"%s\"\n", ull_result, endptr);
-
-    ull_result = ft_strtoull("abc", &endptr, 10);
-    printf("strtoull(\"abc\", &endptr, 10) = %llu, endptr = \"%s\"\n", ull_result, endptr);
-
-    /* Invalid base */
-    ull_result = ft_strtoull("123", &endptr, 1);
-    printf("strtoull(\"123\", &endptr, 1) = %llu (EINVAL)\n", ull_result);
-
-    ull_result = ft_strtoull("123", &endptr, 37);
-    printf("strtoull(\"123\", &endptr, 37) = %llu (EINVAL)\n", ull_result);
-
-    /* Large number tests (unique to unsigned) */
-    printf("strtoull(\"9223372036854775808\", NULL, 10) = %llu (LLONG_MAX+1)\n",
-        ft_strtoull("9223372036854775808", NULL, 10));
-
-    printf("strtoull(\"18446744073709551614\", NULL, 10) = %llu (ULLONG_MAX-1)\n",
-        ft_strtoull("18446744073709551614", NULL, 10));
-
-    printf("strtoull(\"18446744073709551615\", NULL, 10) = %llu (ULLONG_MAX)\n",
-        ft_strtoull("18446744073709551615", NULL, 10));
-
-    /* Overflow tests */
-    ull_result = ft_strtoull("18446744073709551616", &endptr, 10);  /* ULLONG_MAX + 1 */
-    printf("strtoull(\"18446744073709551616\", &endptr, 10) = %llu (ERANGE)\n", ull_result);
-
-    ull_result = ft_strtoull("99999999999999999999", &endptr, 10);  /* Much larger */
-    printf("strtoull(\"99999999999999999999\", &endptr, 10) = %llu (ERANGE)\n", ull_result);
-
-    /* Hex overflow tests */
-    printf("strtoull(\"0xFFFFFFFFFFFFFFFF\", NULL, 16) = %llu (ULLONG_MAX)\n",
-        ft_strtoull("0xFFFFFFFFFFFFFFFF", NULL, 16));
-
-    ull_result = ft_strtoull("0x10000000000000000", &endptr, 16);  /* ULLONG_MAX + 1 in hex */
-    printf("strtoull(\"0x10000000000000000\", &endptr, 16) = %llu (ERANGE)\n", ull_result);
-
-    /* Mixed sign/space tests */
-    printf("strtoull(\"  +123\", NULL, 10) = %llu\n", ft_strtoull("  +123", NULL, 10));
-    printf("strtoull(\"  -456\", NULL, 10) = %llu (ERANGE)\n", ft_strtoull("  -456", NULL, 10));
-
-    return (0);
+	printf("ft_strtoull Automated Test Suite\n");
+	printf("================================\n\n");
+	test_basic_conversion();
+	test_base_conversion();
+	test_auto_base_detection();
+	test_endptr();
+	test_whitespace();
+	test_error_cases();
+	test_overflow();
+	test_negative_numbers();
+	TEST_SUMMARY();
 }
