@@ -6,39 +6,32 @@
 #    By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/14 08:43:35 by kei2003730        #+#    #+#              #
-#    Updated: 2025/07/14 12:26:51 by kei2003730       ###   ########.fr        #
+#    Updated: 2025/07/16 18:39:09 by kei2003730       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
-# Variables
-SUBDIR	:=	ft_string
-NAME	:=	ft_string.a
-SRC		:=	src/ft_strchr.c \
-			src/ft_strrchr.c \
-			src/ft_strncmp.c \
-			src/ft_strcpy.c \
-			src/ft_strcat.c \
-			src/ft_strlcpy.c \
-			src/ft_strlcat.c \
-			src/ft_strlen.c \
-			src/ft_strdup.c \
-			src/ft_strnstr.c \
-			src/ft_substr.c \
-			src/ft_strjoin.c \
-			src/ft_strtrim.c \
-			src/ft_strmapi.c \
-			src/ft_striteri.c \
-			src/ft_strrcmp.c \
-			src/ft_free_split.c \
-			src/ft_memset.c \
-			src/ft_memcpy.c \
-			src/ft_memmove.c \
-			src/ft_memchr.c \
-			src/ft_memcmp.c \
-			src/ft_memrchr.c
-
-# TEST	:=	ft_ctype_test.c
-INCLUDE	+=	-Iinclude
-
+LIB_NAME	:=	ft_string
+SRC_FILES	:=	ft_strchr.c \
+				ft_strrchr.c \
+				ft_strncmp.c \
+				ft_strcpy.c \
+				ft_strcat.c \
+				ft_strlcpy.c \
+				ft_strlcat.c \
+				ft_strlen.c \
+				ft_strdup.c \
+				ft_strnstr.c \
+				ft_substr.c \
+				ft_strjoin.c \
+				ft_strtrim.c \
+				ft_strmapi.c \
+				ft_striteri.c \
+				ft_strrcmp.c \
+				ft_free_split.c \
+				ft_memset.c \
+				ft_memcpy.c \
+				ft_memmove.c \
+				ft_memchr.c \
+				ft_memcmp.c \
+				ft_memrchr.c
 include	../makeconfig
