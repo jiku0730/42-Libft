@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+         #
+#    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/04 16:00:02 by kjikuhar          #+#    #+#              #
-#    Updated: 2025/07/14 12:32:57 by kei2003730       ###   ########.fr        #
+#    Updated: 2025/08/08 18:38:05 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ CTYPE_LIB	=	ft_ctype/ctype.a
 STRINGS_LIB	=	ft_strings/strings.a
 STRING_LIB	=	ft_string/ft_string.a
 STDIO_LIB	=	ft_stdio/ft_stdio.a
+STDLIB_LIB	=	ft_stdlib/ft_stdlib.a
+LIST_LIB	=	ft_list/ft_list.a
 
 # 将来追加予定の個別ファイル（コメントアウト）
 # SRCS	=	conversion/ft_atoi.c \
@@ -47,8 +49,16 @@ $(STDIO_LIB):
 	@echo "$(CYAN)$(BOLD)Building stdio library...$(RESET)"
 	@$(MAKE) -C ft_stdio
 
+$(STDLIB_LIB):
+	@echo "$(CYAN)$(BOLD)Building stdio library...$(RESET)"
+	@$(MAKE) -C ft_stdlib
+
+$(LIST_LIB):
+	@echo "$(CYAN)$(BOLD)Building stdio library...$(RESET)"
+	@$(MAKE) -C ft_list
+
 # メインライブラリの作成（サブライブラリのみ）
-$(NAME):	$(CTYPE_LIB) $(STRINGS_LIB) $(STRING_LIB) $(STDIO_LIB)
+$(NAME):	$(CTYPE_LIB) $(STRINGS_LIB) $(STRING_LIB) $(STDIO_LIB) $(STDLIB_LIB) $(LIST_LIB)
 			@echo "$(MAGENTA)$(BOLD)Creating unified libft.a...$(RESET)"
 			@cp $(CTYPE_LIB) $(NAME)
 			@ar x $(STRINGS_LIB)
@@ -79,6 +89,8 @@ clean:
 			@$(MAKE) -C ft_strings clean
 			@$(MAKE) -C ft_string clean
 			@$(MAKE) -C ft_stdio clean
+			@$(MAKE) -C ft_stdlib clean
+			@$(MAKE) -C ft_list clean
 
 fclean:		clean
 			@$(RM) $(NAME)
@@ -86,6 +98,8 @@ fclean:		clean
 			@$(MAKE) -C ft_strings fclean
 			@$(MAKE) -C ft_string fclean
 			@$(MAKE) -C ft_stdio fclean
+			@$(MAKE) -C ft_stdlib fclean
+			@$(MAKE) -C ft_list fclean
 
 re:			fclean all
 
@@ -94,6 +108,7 @@ test:
 	$(MAKE) -C ft_strings test
 	$(MAKE) -C ft_string test
 	$(MAKE) -C ft_stdio test
+	$(MAKE) -C ft_stdlib test
 
 .PHONY:		all clean fclean re test
 
