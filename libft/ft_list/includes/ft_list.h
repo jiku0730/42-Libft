@@ -6,12 +6,12 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 18:26:12 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/08/08 18:33:01 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/10/15 15:45:27 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LIST
-# define FT_LIST
+#ifndef FT_LIST_H
+# define FT_LIST_H
 
 # include <stdlib.h>
 
