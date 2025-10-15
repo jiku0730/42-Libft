@@ -19,28 +19,28 @@ TEST_INIT();
 static void	test_punctuation_characters(void)
 {
 	TEST_SECTION("Punctuation Characters");
-	ASSERT_EQ(1, ft_ispunct('!'), "%d");
-	ASSERT_EQ(1, ft_ispunct('@'), "%d");
-	ASSERT_EQ(1, ft_ispunct('#'), "%d");
-	ASSERT_EQ(1, ft_ispunct('.'), "%d");
-	ASSERT_EQ(1, ft_ispunct(','), "%d");
+	ASSERT_EQ(ispunct('!'), ft_ispunct('!'), "%d");
+	ASSERT_EQ(ispunct('@'), ft_ispunct('@'), "%d");
+	ASSERT_EQ(ispunct('#'), ft_ispunct('#'), "%d");
+	ASSERT_EQ(ispunct('.'), ft_ispunct('.'), "%d");
+	ASSERT_EQ(ispunct(','), ft_ispunct(','), "%d");
 }
 
 static void	test_alphanumeric_characters(void)
 {
 	TEST_SECTION("Alphanumeric Characters");
-	ASSERT_EQ(0, ft_ispunct('a'), "%d");
-	ASSERT_EQ(0, ft_ispunct('Z'), "%d");
-	ASSERT_EQ(0, ft_ispunct('0'), "%d");
-	ASSERT_EQ(0, ft_ispunct('9'), "%d");
+	ASSERT_EQ(ispunct('a'), ft_ispunct('a'), "%d");
+	ASSERT_EQ(ispunct('Z'), ft_ispunct('Z'), "%d");
+	ASSERT_EQ(ispunct('0'), ft_ispunct('0'), "%d");
+	ASSERT_EQ(ispunct('9'), ft_ispunct('9'), "%d");
 }
 
 static void	test_whitespace_characters(void)
 {
 	TEST_SECTION("Whitespace Characters");
-	ASSERT_EQ(0, ft_ispunct(' '), "%d");
-	ASSERT_EQ(0, ft_ispunct('\t'), "%d");
-	ASSERT_EQ(0, ft_ispunct('\n'), "%d");
+	ASSERT_EQ(ispunct(' '), ft_ispunct(' '), "%d");
+	ASSERT_EQ(ispunct('\t'), ft_ispunct('\t'), "%d");
+	ASSERT_EQ(ispunct('\n'), ft_ispunct('\n'), "%d");
 }
 
 static void	test_standard_compatibility(void)
@@ -51,10 +51,10 @@ static void	test_standard_compatibility(void)
 	c = 0;
 	while (c <= 255)
 	{
-		if (!!ispunct(c) != !!ft_ispunct(c))
+		if (ispunct(c) != ft_ispunct(c))
 		{
-			printf("FAIL at char %d: std=%d, ft=%d\n", c, !!ispunct(c),
-				!!ft_ispunct(c));
+			printf("FAIL at char %d: std=%d, ft=%d\n", c, ispunct(c),
+				ft_ispunct(c));
 			g_test_count++;
 		}
 		else

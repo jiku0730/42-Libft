@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 17:13:00 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/10/15 15:40:47 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/10/15 16:05:38 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,22 @@ typedef unsigned short	t_ctype_mask;
 
 /*
 ** Bit flags for character type classification
+** Uses the same bit layout as standard C library (with byte swapping)
 */
 enum	e_ctype_bits
 {
-	FT_IS_UPPER = 1u << 0,
-	FT_IS_LOWER = 1u << 1,
-	FT_IS_ALPHA = 1u << 2,
-	FT_IS_DIGIT = 1u << 3,
-	FT_IS_XDIGIT = 1u << 4,
-	FT_IS_SPACE = 1u << 5,
-	FT_IS_PRINT = 1u << 6,
-	FT_IS_GRAPH = 1u << 7,
-	FT_IS_BLANK = 1u << 8,
-	FT_IS_CNTRL = 1u << 9,
-	FT_IS_PUNCT = 1u << 10,
-	FT_IS_ALNUM = 1u << 11
+	FT_IS_UPPER = ((1u << 0) << 8),
+	FT_IS_LOWER = ((1u << 1) << 8),
+	FT_IS_ALPHA = ((1u << 2) << 8),
+	FT_IS_DIGIT = ((1u << 3) << 8),
+	FT_IS_XDIGIT = ((1u << 4) << 8),
+	FT_IS_SPACE = ((1u << 5) << 8),
+	FT_IS_PRINT = ((1u << 6) << 8),
+	FT_IS_GRAPH = ((1u << 7) << 8),
+	FT_IS_BLANK = ((1u << 8) >> 8),
+	FT_IS_CNTRL = ((1u << 9) >> 8),
+	FT_IS_PUNCT = ((1u << 10) >> 8),
+	FT_IS_ALNUM = ((1u << 11) >> 8)
 };
 
 /*

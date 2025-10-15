@@ -19,30 +19,30 @@ TEST_INIT();
 static void	test_printable_characters(void)
 {
 	TEST_SECTION("Printable Characters (32-126)");
-	ASSERT_EQ(1, ft_isprint(' '), "%d");
-	ASSERT_EQ(1, ft_isprint('A'), "%d");
-	ASSERT_EQ(1, ft_isprint('z'), "%d");
-	ASSERT_EQ(1, ft_isprint('0'), "%d");
-	ASSERT_EQ(1, ft_isprint('~'), "%d");
+	ASSERT_EQ(isprint(' '), ft_isprint(' '), "%d");
+	ASSERT_EQ(isprint('A'), ft_isprint('A'), "%d");
+	ASSERT_EQ(isprint('z'), ft_isprint('z'), "%d");
+	ASSERT_EQ(isprint('0'), ft_isprint('0'), "%d");
+	ASSERT_EQ(isprint('~'), ft_isprint('~'), "%d");
 }
 
 static void	test_non_printable_characters(void)
 {
 	TEST_SECTION("Non-Printable Characters");
-	ASSERT_EQ(0, ft_isprint(0), "%d");
-	ASSERT_EQ(0, ft_isprint(9), "%d");
-	ASSERT_EQ(0, ft_isprint(10), "%d");
-	ASSERT_EQ(0, ft_isprint(31), "%d");
-	ASSERT_EQ(0, ft_isprint(127), "%d");
+	ASSERT_EQ(isprint(0), ft_isprint(0), "%d");
+	ASSERT_EQ(isprint(9), ft_isprint(9), "%d");
+	ASSERT_EQ(isprint(10), ft_isprint(10), "%d");
+	ASSERT_EQ(isprint(31), ft_isprint(31), "%d");
+	ASSERT_EQ(isprint(127), ft_isprint(127), "%d");
 }
 
 static void	test_boundary_values(void)
 {
 	TEST_SECTION("Boundary Values");
-	ASSERT_EQ(0, ft_isprint(31), "%d");
-	ASSERT_EQ(1, ft_isprint(32), "%d");
-	ASSERT_EQ(1, ft_isprint(126), "%d");
-	ASSERT_EQ(0, ft_isprint(127), "%d");
+	ASSERT_EQ(isprint(31), ft_isprint(31), "%d");
+	ASSERT_EQ(isprint(32), ft_isprint(32), "%d");
+	ASSERT_EQ(isprint(126), ft_isprint(126), "%d");
+	ASSERT_EQ(isprint(127), ft_isprint(127), "%d");
 }
 
 static void	test_standard_compatibility(void)

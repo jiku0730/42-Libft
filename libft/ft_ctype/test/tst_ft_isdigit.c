@@ -19,30 +19,30 @@ TEST_INIT();
 static void	test_digit_characters(void)
 {
 	TEST_SECTION("Digit Characters (0-9)");
-	ASSERT_EQ(1, ft_isdigit('0'), "%d");
-	ASSERT_EQ(1, ft_isdigit('1'), "%d");
-	ASSERT_EQ(1, ft_isdigit('5'), "%d");
-	ASSERT_EQ(1, ft_isdigit('9'), "%d");
+	ASSERT_EQ(isdigit('0'), ft_isdigit('0'), "%d");
+	ASSERT_EQ(isdigit('1'), ft_isdigit('1'), "%d");
+	ASSERT_EQ(isdigit('5'), ft_isdigit('5'), "%d");
+	ASSERT_EQ(isdigit('9'), ft_isdigit('9'), "%d");
 }
 
 static void	test_non_digit_characters(void)
 {
 	TEST_SECTION("Non-Digit Characters");
-	ASSERT_EQ(0, ft_isdigit('a'), "%d");
-	ASSERT_EQ(0, ft_isdigit('Z'), "%d");
-	ASSERT_EQ(0, ft_isdigit(' '), "%d");
-	ASSERT_EQ(0, ft_isdigit('!'), "%d");
-	ASSERT_EQ(0, ft_isdigit('/'), "%d");
-	ASSERT_EQ(0, ft_isdigit(':'), "%d");
+	ASSERT_EQ(isdigit('a'), ft_isdigit('a'), "%d");
+	ASSERT_EQ(isdigit('Z'), ft_isdigit('Z'), "%d");
+	ASSERT_EQ(isdigit(' '), ft_isdigit(' '), "%d");
+	ASSERT_EQ(isdigit('!'), ft_isdigit('!'), "%d");
+	ASSERT_EQ(isdigit('/'), ft_isdigit('/'), "%d");
+	ASSERT_EQ(isdigit(':'), ft_isdigit(':'), "%d");
 }
 
 static void	test_boundary_values(void)
 {
 	TEST_SECTION("Boundary Values");
-	ASSERT_EQ(0, ft_isdigit('0' - 1), "%d");
-	ASSERT_EQ(1, ft_isdigit('0'), "%d");
-	ASSERT_EQ(1, ft_isdigit('9'), "%d");
-	ASSERT_EQ(0, ft_isdigit('9' + 1), "%d");
+	ASSERT_EQ(isdigit('0' - 1), ft_isdigit('0' - 1), "%d");
+	ASSERT_EQ(isdigit('0'), ft_isdigit('0'), "%d");
+	ASSERT_EQ(isdigit('9'), ft_isdigit('9'), "%d");
+	ASSERT_EQ(isdigit('9' + 1), ft_isdigit('9' + 1), "%d");
 }
 
 static void	test_standard_compatibility(void)
