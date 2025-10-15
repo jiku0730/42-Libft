@@ -6,7 +6,7 @@
 #    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/04 16:00:02 by kjikuhar          #+#    #+#              #
-#    Updated: 2025/08/08 18:38:05 by kjikuhar         ###   ########.fr        #
+#    Updated: 2025/10/15 17:22:53 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ CFLAGS	=	-Wall -Wextra -Werror -I.
 NAME	=	libft.a
 
 # サブライブラリ
-CTYPE_LIB	=	ft_ctype/ctype.a
-STRINGS_LIB	=	ft_strings/strings.a
+CTYPE_LIB	=	ft_ctype/ft_ctype.a
+STRINGS_LIB	=	ft_strings/ft_strings.a
 STRING_LIB	=	ft_string/ft_string.a
 STDIO_LIB	=	ft_stdio/ft_stdio.a
 STDLIB_LIB	=	ft_stdlib/ft_stdlib.a
