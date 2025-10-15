@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 17:30:00 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/10/15 15:25:33 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/10/15 16:46:04 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,65 +14,56 @@
 #include "test_framework.h"
 #include <ctype.h>
 
-TEST_INIT();
-
-static void	test_ascii_range(void)
+static void	test_ascii_characters(t_test *ctx)
 {
-	TEST_SECTION("ASCII Range (0-127)");
-	ASSERT_EQ(1, ft_isascii(0), "%d");
-	ASSERT_EQ(1, ft_isascii(65), "%d");
-	ASSERT_EQ(1, ft_isascii(127), "%d");
-	ASSERT_EQ(1, ft_isascii('A'), "%d");
-	ASSERT_EQ(1, ft_isascii('z'), "%d");
+	test_section("ASCII Characters");
+	assert_eq_int(ctx, isascii(0), ft_isascii(0));
+	assert_eq_int(ctx, isascii(65), ft_isascii(65));
+	assert_eq_int(ctx, isascii(127), ft_isascii(127));
+	assert_eq_int(ctx, isascii('A'), ft_isascii('A'));
 }
 
-static void	test_non_ascii_range(void)
+static void	test_non_ascii_characters(t_test *ctx)
 {
-	TEST_SECTION("Non-ASCII Range (128-255)");
-	ASSERT_EQ(0, ft_isascii(128), "%d");
-	ASSERT_EQ(0, ft_isascii(200), "%d");
-	ASSERT_EQ(0, ft_isascii(255), "%d");
+	test_section("Non-ASCII Characters");
+	assert_eq_int(ctx, isascii(128), ft_isascii(128));
+	assert_eq_int(ctx, isascii(200), ft_isascii(200));
+	assert_eq_int(ctx, isascii(255), ft_isascii(255));
+	assert_eq_int(ctx, isascii(-1), ft_isascii(-1));
+	assert_eq_int(ctx, isascii(-128), ft_isascii(-128));
+	assert_eq_int(ctx, isascii(256), ft_isascii(256));
 }
 
-static void	test_boundary_values(void)
+static void	test_boundary_values(t_test *ctx)
 {
-	TEST_SECTION("Boundary Values");
-	ASSERT_EQ(1, ft_isascii(0), "%d");
-	ASSERT_EQ(1, ft_isascii(127), "%d");
-	ASSERT_EQ(0, ft_isascii(-1), "%d");
-	ASSERT_EQ(0, ft_isascii(128), "%d");
+	test_section("Boundary Values");
+	assert_eq_int(ctx, isascii(-1), ft_isascii(-1));
+	assert_eq_int(ctx, isascii(0), ft_isascii(0));
+	assert_eq_int(ctx, isascii(127), ft_isascii(127));
+	assert_eq_int(ctx, isascii(128), ft_isascii(128));
 }
 
-static void	test_standard_compatibility(void)
+static void	test_standard_compatibility(t_test *ctx)
 {
 	int	c;
 
-	TEST_SECTION("Standard Library Compatibility");
-	c = -128;
+	test_section("Standard Library Compatibility");
+	c = 0;
 	while (c <= 255)
 	{
-		if (!!isascii(c) != !!ft_isascii(c))
-		{
-			printf("FAIL at char %d: std=%d, ft=%d\n", c, !!isascii(c),
-				!!ft_isascii(c));
-			g_test_count++;
-		}
-		else
-		{
-			g_test_count++;
-			g_pass_count++;
-		}
+		assert_eq_int(ctx, isascii(c), ft_isascii(c));
 		c++;
 	}
 }
 
 int	main(void)
 {
-	printf("ft_isascii Automated Test Suite\n");
-	printf("===============================\n\n");
-	test_ascii_range();
-	test_non_ascii_range();
-	test_boundary_values();
-	test_standard_compatibility();
-	TEST_SUMMARY();
+	t_test	ctx;
+
+	test_init(&ctx);
+	test_ascii_characters(&ctx);
+	test_non_ascii_characters(&ctx);
+	test_boundary_values(&ctx);
+	test_standard_compatibility(&ctx);
+	return (test_summary(&ctx));
 }

@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 17:30:00 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/10/15 15:25:33 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/10/15 16:54:15 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,67 +14,26 @@
 #include "test_framework.h"
 #include <ctype.h>
 
-TEST_INIT();
-
-static void	test_digit_characters(void)
+static void	test_comprehensive(t_test *ctx)
 {
-	TEST_SECTION("Digit Characters (0-9)");
-	ASSERT_EQ(isdigit('0'), ft_isdigit('0'), "%d");
-	ASSERT_EQ(isdigit('1'), ft_isdigit('1'), "%d");
-	ASSERT_EQ(isdigit('5'), ft_isdigit('5'), "%d");
-	ASSERT_EQ(isdigit('9'), ft_isdigit('9'), "%d");
-}
+	int				c;
+	unsigned char	uc;
 
-static void	test_non_digit_characters(void)
-{
-	TEST_SECTION("Non-Digit Characters");
-	ASSERT_EQ(isdigit('a'), ft_isdigit('a'), "%d");
-	ASSERT_EQ(isdigit('Z'), ft_isdigit('Z'), "%d");
-	ASSERT_EQ(isdigit(' '), ft_isdigit(' '), "%d");
-	ASSERT_EQ(isdigit('!'), ft_isdigit('!'), "%d");
-	ASSERT_EQ(isdigit('/'), ft_isdigit('/'), "%d");
-	ASSERT_EQ(isdigit(':'), ft_isdigit(':'), "%d");
-}
-
-static void	test_boundary_values(void)
-{
-	TEST_SECTION("Boundary Values");
-	ASSERT_EQ(isdigit('0' - 1), ft_isdigit('0' - 1), "%d");
-	ASSERT_EQ(isdigit('0'), ft_isdigit('0'), "%d");
-	ASSERT_EQ(isdigit('9'), ft_isdigit('9'), "%d");
-	ASSERT_EQ(isdigit('9' + 1), ft_isdigit('9' + 1), "%d");
-}
-
-static void	test_standard_compatibility(void)
-{
-	int	c;
-
-	TEST_SECTION("Standard Library Compatibility");
-	c = 0;
-	while (c <= 255)
+	test_section("Comprehensive Test (-255 to +300)");
+	c = -255;
+	while (c <= 300)
 	{
-		if (!!isdigit(c) != !!ft_isdigit(c))
-		{
-			printf("FAIL at char %d: std=%d, ft=%d\n", c, !!isdigit(c),
-				!!ft_isdigit(c));
-			g_test_count++;
-		}
-		else
-		{
-			g_test_count++;
-			g_pass_count++;
-		}
+		uc = (unsigned char)c;
+		assert_eq_int(ctx, isdigit(uc), ft_isdigit(uc));
 		c++;
 	}
 }
 
 int	main(void)
 {
-	printf("ft_isdigit Automated Test Suite\n");
-	printf("===============================\n\n");
-	test_digit_characters();
-	test_non_digit_characters();
-	test_boundary_values();
-	test_standard_compatibility();
-	TEST_SUMMARY();
+	t_test	ctx;
+
+	test_init(&ctx);
+	test_comprehensive(&ctx);
+	return (test_summary(&ctx));
 }

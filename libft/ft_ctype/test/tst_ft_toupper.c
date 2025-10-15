@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 17:30:00 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/10/15 15:25:33 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/10/15 17:02:58 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,66 +14,26 @@
 #include "test_framework.h"
 #include <ctype.h>
 
-TEST_INIT();
-
-static void	test_lowercase_conversion(void)
+static void	test_comprehensive(t_test *ctx)
 {
-	TEST_SECTION("Lowercase to Uppercase Conversion");
-	ASSERT_EQ('A', ft_toupper('a'), "%c");
-	ASSERT_EQ('Z', ft_toupper('z'), "%c");
-	ASSERT_EQ('M', ft_toupper('m'), "%c");
-	ASSERT_EQ('B', ft_toupper('b'), "%c");
-	ASSERT_EQ('Y', ft_toupper('y'), "%c");
-}
+	int				c;
+	unsigned char	uc;
 
-static void	test_already_uppercase(void)
-{
-	TEST_SECTION("Already Uppercase Characters");
-	ASSERT_EQ('A', ft_toupper('A'), "%c");
-	ASSERT_EQ('Z', ft_toupper('Z'), "%c");
-	ASSERT_EQ('M', ft_toupper('M'), "%c");
-}
-
-static void	test_non_alphabetic(void)
-{
-	TEST_SECTION("Non-Alphabetic Characters");
-	ASSERT_EQ('0', ft_toupper('0'), "%c");
-	ASSERT_EQ('9', ft_toupper('9'), "%c");
-	ASSERT_EQ(' ', ft_toupper(' '), "%c");
-	ASSERT_EQ('!', ft_toupper('!'), "%c");
-	ASSERT_EQ('@', ft_toupper('@'), "%c");
-}
-
-static void	test_standard_compatibility(void)
-{
-	int	c;
-
-	TEST_SECTION("Standard Library Compatibility");
-	c = 0;
-	while (c <= 255)
+	test_section("Comprehensive Test (-255 to +300)");
+	c = -255;
+	while (c <= 300)
 	{
-		if (toupper(c) != ft_toupper(c))
-		{
-			printf("FAIL at char %d: std=%d, ft=%d\n", c, toupper(c),
-				ft_toupper(c));
-			g_test_count++;
-		}
-		else
-		{
-			g_test_count++;
-			g_pass_count++;
-		}
+		uc = (unsigned char)c;
+		assert_eq_int(ctx, toupper(uc), ft_toupper(uc));
 		c++;
 	}
 }
 
 int	main(void)
 {
-	printf("ft_toupper Automated Test Suite\n");
-	printf("===============================\n\n");
-	test_lowercase_conversion();
-	test_already_uppercase();
-	test_non_alphabetic();
-	test_standard_compatibility();
-	TEST_SUMMARY();
+	t_test	ctx;
+
+	test_init(&ctx);
+	test_comprehensive(&ctx);
+	return (test_summary(&ctx));
 }

@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 17:30:00 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/10/15 15:25:33 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/10/15 17:02:40 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,64 +14,26 @@
 #include "test_framework.h"
 #include <ctype.h>
 
-TEST_INIT();
-
-static void	test_lowercase_letters(void)
+static void	test_comprehensive(t_test *ctx)
 {
-	TEST_SECTION("Lowercase Letters (a-z)");
-	ASSERT_EQ(islower('a'), ft_islower('a'), "%d");
-	ASSERT_EQ(islower('m'), ft_islower('m'), "%d");
-	ASSERT_EQ(islower('z'), ft_islower('z'), "%d");
-}
+	int				c;
+	unsigned char	uc;
 
-static void	test_uppercase_letters(void)
-{
-	TEST_SECTION("Uppercase Letters");
-	ASSERT_EQ(islower('A'), ft_islower('A'), "%d");
-	ASSERT_EQ(islower('M'), ft_islower('M'), "%d");
-	ASSERT_EQ(islower('Z'), ft_islower('Z'), "%d");
-}
-
-static void	test_non_alphabetic(void)
-{
-	TEST_SECTION("Non-Alphabetic Characters");
-	ASSERT_EQ(islower('0'), ft_islower('0'), "%d");
-	ASSERT_EQ(islower('9'), ft_islower('9'), "%d");
-	ASSERT_EQ(islower(' '), ft_islower(' '), "%d");
-	ASSERT_EQ(islower('!'), ft_islower('!'), "%d");
-	ASSERT_EQ(islower('@'), ft_islower('@'), "%d");
-}
-
-static void	test_standard_compatibility(void)
-{
-	int	c;
-
-	TEST_SECTION("Standard Library Compatibility");
-	c = 0;
-	while (c <= 255)
+	test_section("Comprehensive Test (-255 to +300)");
+	c = -255;
+	while (c <= 300)
 	{
-		if (!!islower(c) != !!ft_islower(c))
-		{
-			printf("FAIL at char %d: std=%d, ft=%d\n", c, !!islower(c),
-				!!ft_islower(c));
-			g_test_count++;
-		}
-		else
-		{
-			g_test_count++;
-			g_pass_count++;
-		}
+		uc = (unsigned char)c;
+		assert_eq_int(ctx, islower(uc), ft_islower(uc));
 		c++;
 	}
 }
 
 int	main(void)
 {
-	printf("ft_islower Automated Test Suite\n");
-	printf("===============================\n\n");
-	test_lowercase_letters();
-	test_uppercase_letters();
-	test_non_alphabetic();
-	test_standard_compatibility();
-	TEST_SUMMARY();
+	t_test	ctx;
+
+	test_init(&ctx);
+	test_comprehensive(&ctx);
+	return (test_summary(&ctx));
 }

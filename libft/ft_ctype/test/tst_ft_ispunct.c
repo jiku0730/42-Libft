@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 17:30:00 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/10/15 16:13:20 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/10/15 17:02:42 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,65 +14,26 @@
 #include "test_framework.h"
 #include <ctype.h>
 
-TEST_INIT();
-
-static void	test_punctuation_characters(void)
+static void	test_comprehensive(t_test *ctx)
 {
-	TEST_SECTION("Punctuation Characters");
-	ASSERT_EQ(ispunct('!'), ft_ispunct('!'), "%d");
-	ASSERT_EQ(ispunct('@'), ft_ispunct('@'), "%d");
-	ASSERT_EQ(ispunct('#'), ft_ispunct('#'), "%d");
-	ASSERT_EQ(ispunct('.'), ft_ispunct('.'), "%d");
-	ASSERT_EQ(ispunct(','), ft_ispunct(','), "%d");
-}
+	int				c;
+	unsigned char	uc;
 
-static void	test_alphanumeric_characters(void)
-{
-	TEST_SECTION("Alphanumeric Characters");
-	ASSERT_EQ(ispunct('a'), ft_ispunct('a'), "%d");
-	ASSERT_EQ(ispunct('Z'), ft_ispunct('Z'), "%d");
-	ASSERT_EQ(ispunct('0'), ft_ispunct('0'), "%d");
-	ASSERT_EQ(ispunct('9'), ft_ispunct('9'), "%d");
-}
-
-static void	test_whitespace_characters(void)
-{
-	TEST_SECTION("Whitespace Characters");
-	ASSERT_EQ(ispunct(' '), ft_ispunct(' '), "%d");
-	ASSERT_EQ(ispunct('\t'), ft_ispunct('\t'), "%d");
-	ASSERT_EQ(ispunct('\n'), ft_ispunct('\n'), "%d");
-}
-
-static void	test_standard_compatibility(void)
-{
-	int	c;
-
-	TEST_SECTION("Standard Library Compatibility");
-	c = 0;
-	while (c <= 255)
+	test_section("Comprehensive Test (-255 to +300)");
+	c = -255;
+	while (c <= 300)
 	{
-		if (ispunct(c) != ft_ispunct(c))
-		{
-			printf("FAIL at char %d: std=%d, ft=%d\n", c, ispunct(c),
-				ft_ispunct(c));
-			g_test_count++;
-		}
-		else
-		{
-			g_test_count++;
-			g_pass_count++;
-		}
+		uc = (unsigned char)c;
+		assert_eq_int(ctx, ispunct(uc), ft_ispunct(uc));
 		c++;
 	}
 }
 
 int	main(void)
 {
-	printf("ft_ispunct Automated Test Suite\n");
-	printf("===============================\n\n");
-	test_punctuation_characters();
-	test_alphanumeric_characters();
-	test_whitespace_characters();
-	test_standard_compatibility();
-	TEST_SUMMARY();
+	t_test	ctx;
+
+	test_init(&ctx);
+	test_comprehensive(&ctx);
+	return (test_summary(&ctx));
 }
