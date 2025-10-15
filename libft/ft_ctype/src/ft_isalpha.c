@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 21:11:06 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/10/15 15:24:04 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/10/15 15:36:24 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	ft_isalpha(int c)
 {
-	return ((ft_ctype_table[(unsigned char)(c)] & FT_IS_ALPHA) != 0);
+	return ((ft_get_ctype_table()[(unsigned char)(c)] & FT_IS_ALPHA) != 0);
 }

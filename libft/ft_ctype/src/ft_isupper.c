@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 17:46:32 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/10/15 15:25:33 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/10/15 15:36:25 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	ft_isupper(int c)
 {
-	return ((ft_ctype_table[(unsigned char)(c)] & FT_IS_UPPER) != 0);
+	return ((ft_get_ctype_table()[(unsigned char)(c)] & FT_IS_UPPER) != 0);
 }
