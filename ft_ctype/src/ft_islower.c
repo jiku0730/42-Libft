@@ -14,5 +14,5 @@
 
 int	ft_islower(int c)
 {
-	return ((ft_get_ctype_table()[(unsigned char)(c)] & IS_LOWER) != 0);
+	return (ft_get_ctype_table()[(unsigned char)(c)] & IS_LOWER);
 }

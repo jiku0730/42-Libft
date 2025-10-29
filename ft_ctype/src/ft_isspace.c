@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 18:12:36 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/10/29 22:00:44 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/10/30 00:28:53 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	ft_isspace(int c)
 {
-	return ((ft_get_ctype_table()[(unsigned char)(c)] & IS_SPACE) != 0);
+	return (ft_get_ctype_table()[(unsigned char)(c)] & IS_SPACE);
 }

@@ -19,32 +19,32 @@ TEST_INIT();
 static void	test_decimal_digits(void)
 {
 	TEST_SECTION("Decimal Digits (0-9)");
-	ASSERT_EQ(1, ft_isxdigit('0'), "%d");
-	ASSERT_EQ(1, ft_isxdigit('5'), "%d");
-	ASSERT_EQ(1, ft_isxdigit('9'), "%d");
+	ASSERT_EQ(isxdigit('0'), ft_isxdigit('0'), "%d");
+	ASSERT_EQ(isxdigit('5'), ft_isxdigit('5'), "%d");
+	ASSERT_EQ(isxdigit('9'), ft_isxdigit('9'), "%d");
 }
 
 static void	test_hex_letters_lowercase_and_uppercase(void)
 {
 	TEST_SECTION("Hex Letters Lowercase (a-f)");
-	ASSERT_EQ(1, ft_isxdigit('a'), "%d");
-	ASSERT_EQ(1, ft_isxdigit('c'), "%d");
-	ASSERT_EQ(1, ft_isxdigit('f'), "%d");
+	ASSERT_EQ(isxdigit('a'), ft_isxdigit('a'), "%d");
+	ASSERT_EQ(isxdigit('c'), ft_isxdigit('c'), "%d");
+	ASSERT_EQ(isxdigit('f'), ft_isxdigit('f'), "%d");
 	TEST_SECTION("Hex Letters Uppercase (A-F)");
-	ASSERT_EQ(1, ft_isxdigit('A'), "%d");
-	ASSERT_EQ(1, ft_isxdigit('C'), "%d");
-	ASSERT_EQ(1, ft_isxdigit('F'), "%d");
+	ASSERT_EQ(isxdigit('A'), ft_isxdigit('A'), "%d");
+	ASSERT_EQ(isxdigit('C'), ft_isxdigit('C'), "%d");
+	ASSERT_EQ(isxdigit('F'), ft_isxdigit('F'), "%d");
 }
 
 static void	test_non_hex_characters(void)
 {
 	TEST_SECTION("Non-Hexadecimal Characters");
-	ASSERT_EQ(0, ft_isxdigit('g'), "%d");
-	ASSERT_EQ(0, ft_isxdigit('G'), "%d");
-	ASSERT_EQ(0, ft_isxdigit('z'), "%d");
-	ASSERT_EQ(0, ft_isxdigit('Z'), "%d");
-	ASSERT_EQ(0, ft_isxdigit(' '), "%d");
-	ASSERT_EQ(0, ft_isxdigit('!'), "%d");
+	ASSERT_EQ(isxdigit('g'), ft_isxdigit('g'), "%d");
+	ASSERT_EQ(isxdigit('G'), ft_isxdigit('G'), "%d");
+	ASSERT_EQ(isxdigit('z'), ft_isxdigit('z'), "%d");
+	ASSERT_EQ(isxdigit('Z'), ft_isxdigit('Z'), "%d");
+	ASSERT_EQ(isxdigit(' '), ft_isxdigit(' '), "%d");
+	ASSERT_EQ(isxdigit('!'), ft_isxdigit('!'), "%d");
 }
 
 static void	test_standard_compatibility(void)

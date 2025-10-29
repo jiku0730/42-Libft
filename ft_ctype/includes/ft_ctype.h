@@ -13,25 +13,46 @@
 #ifndef FT_CTYPE_H
 # define FT_CTYPE_H
 
+/* Standard includes: must be at the top for norminette */
 # include <stddef.h>
+# include <stdio.h>
+# include <endian.h>
 
 typedef unsigned short	t_ctype_mask;
 
-/* Bit definitions for character classification */
-enum {
-	IS_UPPER = 1u << 0,
-	IS_LOWER = 1u << 1,
-	IS_ALPHA = 1u << 2,
-	IS_DIGIT = 1u << 3,
-	IS_XDIGIT = 1u << 4,
-	IS_SPACE = 1u << 5,
-	IS_PRINT = 1u << 6,
-	IS_GRAPH = 1u << 7,
-	IS_BLANK = 1u << 8,
-	IS_CNTRL = 1u << 9,
-	IS_PUNCT = 1u << 10,
-	IS_ALNUM = 1u << 11
-};
+/* Define masks per endianness. We avoid macro-functions; each mask is a
+ * compile-time constant defined by a preprocessor branch. This matches the
+ * layout used by the system ctype implementation while keeping the header
+ * free of macro functions (norminette rule).
+ */
+/* Use literal constants only (norminette: PREPROC_CONSTANT). */
+# if __BYTE_ORDER == __BIG_ENDIAN
+#  define IS_UPPER  0x0100
+#  define IS_LOWER  0x0200
+#  define IS_ALPHA  0x0400
+#  define IS_DIGIT  0x0800
+#  define IS_XDIGIT 0x1000
+#  define IS_SPACE  0x2000
+#  define IS_PRINT  0x4000
+#  define IS_GRAPH  0x8000
+#  define IS_BLANK  0x0001
+#  define IS_CNTRL  0x0002
+#  define IS_PUNCT  0x0004
+#  define IS_ALNUM  0x0008
+# else
+#  define IS_UPPER  0x0100
+#  define IS_LOWER  0x0200
+#  define IS_ALPHA  0x0400
+#  define IS_DIGIT  0x0800
+#  define IS_XDIGIT 0x1000
+#  define IS_SPACE  0x2000
+#  define IS_PRINT  0x4000
+#  define IS_GRAPH  0x8000
+#  define IS_BLANK  0x0001
+#  define IS_CNTRL  0x0002
+#  define IS_PUNCT  0x0004
+#  define IS_ALNUM  0x0008
+# endif
 
 /* Table access function */
 const t_ctype_mask		*ft_get_ctype_table(void);

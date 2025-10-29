@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tst_ft_isalpha.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42.fr>      +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 17:30:00 by kjikuhar        #+#    #+#             */
-/*   Updated: 2025/07/16 17:42:10 by kjikuhar       ###   ########.fr       */
+/*   Created: 2025/07/16 17:30:00 by kei2003730        #+#    #+#             */
+/*   Updated: 2025/10/30 00:25:58 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,30 @@ TEST_INIT();
 static void	test_lowercase_letters(void)
 {
 	TEST_SECTION("Lowercase Letters");
-	ASSERT_EQ(1, ft_isalpha('a'), "%d");
-	ASSERT_EQ(1, ft_isalpha('m'), "%d");
-	ASSERT_EQ(1, ft_isalpha('z'), "%d");
+	ASSERT_EQ(isalpha('a'), ft_isalpha('a'), "%d");
+	ASSERT_EQ(isalpha('m'), ft_isalpha('m'), "%d");
+	ASSERT_EQ(isalpha('z'), ft_isalpha('z'), "%d");
 }
 
 static void	test_uppercase_letters(void)
 {
 	TEST_SECTION("Uppercase Letters");
-	ASSERT_EQ(1, ft_isalpha('A'), "%d");
-	ASSERT_EQ(1, ft_isalpha('M'), "%d");
-	ASSERT_EQ(1, ft_isalpha('Z'), "%d");
+	ASSERT_EQ(isalpha('A'), ft_isalpha('A'), "%d");
+	ASSERT_EQ(isalpha('M'), ft_isalpha('M'), "%d");
+	ASSERT_EQ(isalpha('Z'), ft_isalpha('Z'), "%d");
 }
 
 static void	test_non_alphabetic(void)
 {
 	TEST_SECTION("Non-Alphabetic Characters");
-	ASSERT_EQ(0, ft_isalpha('0'), "%d");
-	ASSERT_EQ(0, ft_isalpha('9'), "%d");
-	ASSERT_EQ(0, ft_isalpha(' '), "%d");
-	ASSERT_EQ(0, ft_isalpha('!'), "%d");
-	ASSERT_EQ(0, ft_isalpha('@'), "%d");
-	ASSERT_EQ(0, ft_isalpha('['), "%d");
-	ASSERT_EQ(0, ft_isalpha('`'), "%d");
-	ASSERT_EQ(0, ft_isalpha('{'), "%d");
+	ASSERT_EQ(isalpha('0'), ft_isalpha('0'), "%d");
+	ASSERT_EQ(isalpha('9'), ft_isalpha('9'), "%d");
+	ASSERT_EQ(isalpha(' '), ft_isalpha(' '), "%d");
+	ASSERT_EQ(isalpha('!'), ft_isalpha('!'), "%d");
+	ASSERT_EQ(isalpha('@'), ft_isalpha('@'), "%d");
+	ASSERT_EQ(isalpha('['), ft_isalpha('['), "%d");
+	ASSERT_EQ(isalpha('`'), ft_isalpha('`'), "%d");
+	ASSERT_EQ(isalpha('{'), ft_isalpha('{'), "%d");
 }
 
 static void	test_standard_compatibility(void)

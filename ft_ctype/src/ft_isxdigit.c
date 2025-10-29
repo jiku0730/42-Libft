@@ -14,5 +14,5 @@
 
 int	ft_isxdigit(int c)
 {
-	return ((ft_get_ctype_table()[(unsigned char)(c)] & IS_XDIGIT) != 0);
+	return (ft_get_ctype_table()[(unsigned char)(c)] & IS_XDIGIT);
 }

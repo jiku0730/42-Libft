@@ -14,5 +14,5 @@
 
 int	ft_ispunct(int c)
 {
-	return ((ft_get_ctype_table()[(unsigned char)(c)] & IS_PUNCT) != 0);
+	return (ft_get_ctype_table()[(unsigned char)(c)] & IS_PUNCT);
 }

@@ -14,5 +14,5 @@
 
 int	ft_isblank(int c)
 {
-	return ((ft_get_ctype_table()[(unsigned char)(c)] & IS_BLANK) != 0);
+	return (ft_get_ctype_table()[(unsigned char)(c)] & IS_BLANK);
 }

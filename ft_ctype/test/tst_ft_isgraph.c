@@ -19,30 +19,30 @@ TEST_INIT();
 static void	test_graphic_characters(void)
 {
 	TEST_SECTION("Graphic Characters (33-126)");
-	ASSERT_EQ(1, ft_isgraph('!'), "%d");
-	ASSERT_EQ(1, ft_isgraph('A'), "%d");
-	ASSERT_EQ(1, ft_isgraph('z'), "%d");
-	ASSERT_EQ(1, ft_isgraph('0'), "%d");
-	ASSERT_EQ(1, ft_isgraph('~'), "%d");
+	ASSERT_EQ(isgraph('!'), ft_isgraph('!'), "%d");
+	ASSERT_EQ(isgraph('A'), ft_isgraph('A'), "%d");
+	ASSERT_EQ(isgraph('z'), ft_isgraph('z'), "%d");
+	ASSERT_EQ(isgraph('0'), ft_isgraph('0'), "%d");
+	ASSERT_EQ(isgraph('~'), ft_isgraph('~'), "%d");
 }
 
 static void	test_non_graphic_characters(void)
 {
 	TEST_SECTION("Non-Graphic Characters");
-	ASSERT_EQ(0, ft_isgraph(' '), "%d");
-	ASSERT_EQ(0, ft_isgraph('\t'), "%d");
-	ASSERT_EQ(0, ft_isgraph('\n'), "%d");
-	ASSERT_EQ(0, ft_isgraph(0), "%d");
-	ASSERT_EQ(0, ft_isgraph(127), "%d");
+	ASSERT_EQ(isgraph(' '), ft_isgraph(' '), "%d");
+	ASSERT_EQ(isgraph('\t'), ft_isgraph('\t'), "%d");
+	ASSERT_EQ(isgraph('\n'), ft_isgraph('\n'), "%d");
+	ASSERT_EQ(isgraph(0), ft_isgraph(0), "%d");
+	ASSERT_EQ(isgraph(127), ft_isgraph(127), "%d");
 }
 
 static void	test_boundary_values(void)
 {
 	TEST_SECTION("Boundary Values");
-	ASSERT_EQ(0, ft_isgraph(32), "%d");
-	ASSERT_EQ(1, ft_isgraph(33), "%d");
-	ASSERT_EQ(1, ft_isgraph(126), "%d");
-	ASSERT_EQ(0, ft_isgraph(127), "%d");
+	ASSERT_EQ(isgraph(32), ft_isgraph(32), "%d");
+	ASSERT_EQ(isgraph(33), ft_isgraph(33), "%d");
+	ASSERT_EQ(isgraph(126), ft_isgraph(126), "%d");
+	ASSERT_EQ(isgraph(127), ft_isgraph(127), "%d");
 }
 
 static void	test_standard_compatibility(void)

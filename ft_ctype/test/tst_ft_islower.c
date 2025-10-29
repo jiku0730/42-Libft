@@ -19,27 +19,27 @@ TEST_INIT();
 static void	test_lowercase_letters(void)
 {
 	TEST_SECTION("Lowercase Letters (a-z)");
-	ASSERT_EQ(1, ft_islower('a'), "%d");
-	ASSERT_EQ(1, ft_islower('m'), "%d");
-	ASSERT_EQ(1, ft_islower('z'), "%d");
+	ASSERT_EQ(islower('a'), ft_islower('a'), "%d");
+	ASSERT_EQ(islower('m'), ft_islower('m'), "%d");
+	ASSERT_EQ(islower('z'), ft_islower('z'), "%d");
 }
 
 static void	test_uppercase_letters(void)
 {
 	TEST_SECTION("Uppercase Letters");
-	ASSERT_EQ(0, ft_islower('A'), "%d");
-	ASSERT_EQ(0, ft_islower('M'), "%d");
-	ASSERT_EQ(0, ft_islower('Z'), "%d");
+	ASSERT_EQ(islower('A'), ft_islower('A'), "%d");
+	ASSERT_EQ(islower('M'), ft_islower('M'), "%d");
+	ASSERT_EQ(islower('Z'), ft_islower('Z'), "%d");
 }
 
 static void	test_non_alphabetic(void)
 {
 	TEST_SECTION("Non-Alphabetic Characters");
-	ASSERT_EQ(0, ft_islower('0'), "%d");
-	ASSERT_EQ(0, ft_islower('9'), "%d");
-	ASSERT_EQ(0, ft_islower(' '), "%d");
-	ASSERT_EQ(0, ft_islower('!'), "%d");
-	ASSERT_EQ(0, ft_islower('@'), "%d");
+	ASSERT_EQ(islower('0'), ft_islower('0'), "%d");
+	ASSERT_EQ(islower('9'), ft_islower('9'), "%d");
+	ASSERT_EQ(islower(' '), ft_islower(' '), "%d");
+	ASSERT_EQ(islower('!'), ft_islower('!'), "%d");
+	ASSERT_EQ(islower('@'), ft_islower('@'), "%d");
 }
 
 static void	test_standard_compatibility(void)

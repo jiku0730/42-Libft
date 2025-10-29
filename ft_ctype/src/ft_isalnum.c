@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 21:20:17 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/10/29 22:00:39 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/10/29 23:34:23 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	ft_isalnum(int c)
 {
-	return ((ft_get_ctype_table()[(unsigned char)(c)] & IS_ALNUM) != 0);
+	return (ft_get_ctype_table()[(unsigned char)(c)] & IS_ALNUM);
 }

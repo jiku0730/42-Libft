@@ -19,29 +19,29 @@ TEST_INIT();
 static void	test_alphabetic_characters(void)
 {
 	TEST_SECTION("Alphabetic Characters");
-	ASSERT_EQ(1, ft_isalnum('a'), "%d");
-	ASSERT_EQ(1, ft_isalnum('z'), "%d");
-	ASSERT_EQ(1, ft_isalnum('A'), "%d");
-	ASSERT_EQ(1, ft_isalnum('Z'), "%d");
-	ASSERT_EQ(1, ft_isalnum('m'), "%d");
+	ASSERT_EQ(isalnum('a'), ft_isalnum('a'), "%d");
+	ASSERT_EQ(isalnum('z'), ft_isalnum('z'), "%d");
+	ASSERT_EQ(isalnum('A'), ft_isalnum('A'), "%d");
+	ASSERT_EQ(isalnum('Z'), ft_isalnum('Z'), "%d");
+	ASSERT_EQ(isalnum('m'), ft_isalnum('m'), "%d");
 }
 
 static void	test_numeric_characters(void)
 {
 	TEST_SECTION("Numeric Characters");
-	ASSERT_EQ(1, ft_isalnum('0'), "%d");
-	ASSERT_EQ(1, ft_isalnum('5'), "%d");
-	ASSERT_EQ(1, ft_isalnum('9'), "%d");
+	ASSERT_EQ(isalnum('0'), ft_isalnum('0'), "%d");
+	ASSERT_EQ(isalnum('5'), ft_isalnum('5'), "%d");
+	ASSERT_EQ(isalnum('9'), ft_isalnum('9'), "%d");
 }
 
 static void	test_non_alphanumeric(void)
 {
 	TEST_SECTION("Non-Alphanumeric Characters");
-	ASSERT_EQ(0, ft_isalnum(' '), "%d");
-	ASSERT_EQ(0, ft_isalnum('!'), "%d");
-	ASSERT_EQ(0, ft_isalnum('@'), "%d");
-	ASSERT_EQ(0, ft_isalnum('['), "%d");
-	ASSERT_EQ(0, ft_isalnum('`'), "%d");
+	ASSERT_EQ(isalnum(' '), ft_isalnum(' '), "%d");
+	ASSERT_EQ(isalnum('!'), ft_isalnum('!'), "%d");
+	ASSERT_EQ(isalnum('@'), ft_isalnum('@'), "%d");
+	ASSERT_EQ(isalnum('['), ft_isalnum('['), "%d");
+	ASSERT_EQ(isalnum('`'), ft_isalnum('`'), "%d");
 }
 
 static void	test_standard_compatibility(void)
@@ -52,10 +52,10 @@ static void	test_standard_compatibility(void)
 	c = 0;
 	while (c <= 255)
 	{
-		if (!!isalnum(c) != !!ft_isalnum(c))
+		if (isalnum(c) != ft_isalnum(c))
 		{
-			printf("FAIL at char %d: std=%d, ft=%d\n", c, !!isalnum(c),
-				!!ft_isalnum(c));
+			printf("FAIL at char %d: std=%d, ft=%d\n", c, isalnum(c),
+				ft_isalnum(c));
 			g_test_count++;
 		}
 		else

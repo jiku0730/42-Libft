@@ -14,5 +14,5 @@
 
 int	ft_isupper(int c)
 {
-	return ((ft_get_ctype_table()[(unsigned char)(c)] & IS_UPPER) != 0);
+	return (ft_get_ctype_table()[(unsigned char)(c)] & IS_UPPER);
 }

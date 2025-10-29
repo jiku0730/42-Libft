@@ -19,33 +19,33 @@ TEST_INIT();
 static void	test_whitespace_characters(void)
 {
 	TEST_SECTION("Whitespace Characters");
-	ASSERT_EQ(1, ft_isspace(' '), "%d");
-	ASSERT_EQ(1, ft_isspace('\t'), "%d");
-	ASSERT_EQ(1, ft_isspace('\n'), "%d");
-	ASSERT_EQ(1, ft_isspace('\r'), "%d");
-	ASSERT_EQ(1, ft_isspace('\f'), "%d");
-	ASSERT_EQ(1, ft_isspace('\v'), "%d");
+	ASSERT_EQ(isspace(' '), ft_isspace(' '), "%d");
+	ASSERT_EQ(isspace('\t'), ft_isspace('\t'), "%d");
+	ASSERT_EQ(isspace('\n'), ft_isspace('\n'), "%d");
+	ASSERT_EQ(isspace('\r'), ft_isspace('\r'), "%d");
+	ASSERT_EQ(isspace('\f'), ft_isspace('\f'), "%d");
+	ASSERT_EQ(isspace('\v'), ft_isspace('\v'), "%d");
 }
 
 static void	test_non_whitespace_characters(void)
 {
 	TEST_SECTION("Non-Whitespace Characters");
-	ASSERT_EQ(0, ft_isspace('a'), "%d");
-	ASSERT_EQ(0, ft_isspace('Z'), "%d");
-	ASSERT_EQ(0, ft_isspace('0'), "%d");
-	ASSERT_EQ(0, ft_isspace('!'), "%d");
-	ASSERT_EQ(0, ft_isspace('@'), "%d");
+	ASSERT_EQ(isspace('a'), ft_isspace('a'), "%d");
+	ASSERT_EQ(isspace('Z'), ft_isspace('Z'), "%d");
+	ASSERT_EQ(isspace('0'), ft_isspace('0'), "%d");
+	ASSERT_EQ(isspace('!'), ft_isspace('!'), "%d");
+	ASSERT_EQ(isspace('@'), ft_isspace('@'), "%d");
 }
 
 static void	test_boundary_values(void)
 {
 	TEST_SECTION("Boundary Values");
-	ASSERT_EQ(1, ft_isspace(9), "%d");
-	ASSERT_EQ(1, ft_isspace(10), "%d");
-	ASSERT_EQ(1, ft_isspace(11), "%d");
-	ASSERT_EQ(1, ft_isspace(12), "%d");
-	ASSERT_EQ(1, ft_isspace(13), "%d");
-	ASSERT_EQ(1, ft_isspace(32), "%d");
+	ASSERT_EQ(isspace(9), ft_isspace(9), "%d");
+	ASSERT_EQ(isspace(10), ft_isspace(10), "%d");
+	ASSERT_EQ(isspace(11), ft_isspace(11), "%d");
+	ASSERT_EQ(isspace(12), ft_isspace(12), "%d");
+	ASSERT_EQ(isspace(13), ft_isspace(13), "%d");
+	ASSERT_EQ(isspace(32), ft_isspace(32), "%d");
 }
 
 static void	test_standard_compatibility(void)
