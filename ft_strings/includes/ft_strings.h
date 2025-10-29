@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strings.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/13 20:36:15 by kei2003730        #+#    #+#             */
-/*   Updated: 2025/07/13 20:39:11 by kei2003730       ###   ########.fr       */
+/*   Created: 2025/07/13 20:36:15 by kjikuhar          #+#    #+#             */
+/*   Updated: 2025/10/29 22:50:59 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,3 @@ int		ft_strcasecmp(const char *s1, const char *s2);
 int		ft_strncasecmp(const char *s1, const char *s2, size_t n);
 
 #endif
-

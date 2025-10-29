@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_string.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/13 20:36:15 by kei2003730        #+#    #+#             */
-/*   Updated: 2025/07/14 09:23:59 by kei2003730       ###   ########.fr       */
+/*   Created: 2025/07/13 20:36:15 by kjikuhar          #+#    #+#             */
+/*   Updated: 2025/10/29 22:50:59 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,3 @@ void	*ft_calloc(size_t nmemb, size_t size);
 void	*ft_memrchr(const void *s, int c, size_t n);
 
 #endif
-

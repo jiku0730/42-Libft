@@ -1,0 +1,15 @@
+{
+	"files.associations": {
+		"ctype.h": "c",
+		"makeconfig": "makefile",
+		"__stddef_null.h": "c",
+		"syscall.h": "c",
+		"stdbool.h": "c",
+		"libft.h": "c",
+		"string": "c",
+		"unistd.h": "c",
+		"unistd_64.h": "c",
+		"limits.h": "c",
+		"stddef.h": "c"
+	}
+}
