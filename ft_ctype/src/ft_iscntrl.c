@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_iscntrl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/13 17:44:13 by kei2003730        #+#    #+#             */
-/*   Updated: 2025/07/13 17:44:21 by kei2003730       ###   ########.fr       */
+/*   Created: 2025/07/13 17:44:13 by kjikuhar        #+#    #+#             */
+/*   Updated: 2025/10/29 22:00:42 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	ft_iscntrl(int c)
 {
-	return ((ft_ctype_table[(unsigned char)(c)] & FT_IS_CNTRL) != 0);
+	return ((ft_get_ctype_table()[(unsigned char)(c)] & IS_CNTRL) != 0);
 }

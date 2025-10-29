@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isblank.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/13 16:15:17 by kei2003730        #+#    #+#             */
-/*   Updated: 2025/07/13 17:40:33 by kei2003730       ###   ########.fr       */
+/*   Created: 2025/07/13 16:15:17 by kjikuhar        #+#    #+#             */
+/*   Updated: 2025/10/29 22:00:41 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ctype.h>
+#include "ft_ctype.h"
 
 int	ft_isblank(int c)
 {
-	return ((unsigned char)c == ' ' || (unsigned char)c == '\t');
+	return ((ft_get_ctype_table()[(unsigned char)(c)] & IS_BLANK) != 0);
 }

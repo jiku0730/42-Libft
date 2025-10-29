@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ispunct.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/13 17:46:11 by kei2003730        #+#    #+#             */
-/*   Updated: 2025/07/13 17:46:17 by kei2003730       ###   ########.fr       */
+/*   Created: 2025/07/13 17:46:11 by kjikuhar        #+#    #+#             */
+/*   Updated: 2025/10/29 22:00:44 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	ft_ispunct(int c)
 {
-	return ((ft_ctype_table[(unsigned char)(c)] & FT_IS_PUNCT) != 0);
+	return ((ft_get_ctype_table()[(unsigned char)(c)] & IS_PUNCT) != 0);
 }

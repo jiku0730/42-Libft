@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 21:11:06 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/07/13 18:23:04 by kei2003730       ###   ########.fr       */
+/*   Updated: 2025/10/29 21:57:27 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	ft_isalpha(int c)
 {
-	return ((ft_ctype_table[(unsigned char)(c)] & FT_IS_ALPHA) != 0);
+	return ((ft_get_ctype_table()[(unsigned char)(c)] & IS_ALPHA) != 0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 21:20:17 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/07/13 17:41:00 by kei2003730       ###   ########.fr       */
+/*   Updated: 2025/10/29 22:00:44 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	ft_isprint(int c)
 {
-	return ((ft_ctype_table[(unsigned char)(c)] & FT_IS_PRINT) != 0);
+	return ((ft_get_ctype_table()[(unsigned char)(c)] & IS_PRINT) != 0);
 }
