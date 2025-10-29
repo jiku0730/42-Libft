@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tst_ft_isalnum.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42.fr>      +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 17:30:00 by kjikuhar        #+#    #+#             */
-/*   Updated: 2025/07/16 17:42:10 by kjikuhar       ###   ########.fr       */
+/*   Created: 2025/10/30 00:33:24 by kjikuhar          #+#    #+#             */
+/*   Updated: 2025/10/30 00:33:25 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

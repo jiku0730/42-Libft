@@ -3,15 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kjikuhar <kjikuhar@student.42.fr>      +#+  +:+       +#+         #
+#    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/07/13 17:35:43 by kjikuhar        #+#    #+#              #
-#    Updated: 2025/07/16 18:22:34 by kjikuhar       ###   ########.fr        #
+#    Created: 2025/10/30 00:36:13 by kjikuhar          #+#    #+#              #
+#    Updated: 2025/10/30 00:36:19 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 LIB_NAME	:=	ft_ctype
-SRC_FILES	:=	ft_isalnum.c \
+SRC_FILES	:=	ft_get_ctype_table.c \
+				ft_isalnum.c \
 				ft_isascii.c \
 				ft_iscntrl.c \
 				ft_isgraph.c \

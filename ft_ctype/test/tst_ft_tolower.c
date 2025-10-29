@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tst_ft_tolower.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kjikuhar <kjikuhar@student.42.fr>      +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/16 17:30:00 by kjikuhar        #+#    #+#             */
-/*   Updated: 2025/07/16 17:42:12 by kjikuhar       ###   ########.fr       */
+/*   Created: 2025/10/30 00:34:42 by kjikuhar          #+#    #+#             */
+/*   Updated: 2025/10/30 00:34:43 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
