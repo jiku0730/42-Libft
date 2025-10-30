@@ -6,19 +6,13 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 00:50:00 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/10/30 00:44:58 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/10/30 01:41:46 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test_framework.h"
 #include <stdio.h>
 #include <string.h>
-
-/* Color codes for terminal output */
-#define C_GREEN "\033[32m"
-#define C_RED "\033[31m"
-#define C_BLUE "\033[34m"
-#define C_RESET "\033[0m"
 
 /* Global test counters */
 int	g_test_count = 0;
@@ -135,4 +129,21 @@ int	test_summary(void)
 		g_pass_count, C_RESET, g_test_count,
 		(100.0 * g_pass_count) / g_test_count);
 	return (g_pass_count == g_test_count) ? 0 : 1;
+}
+
+int	test_ctype_all(const char *name, t_ctype_func std_func,
+		t_ctype_func ft_func)
+{
+	int	c;
+
+	printf("ft_%s Test Suite\n", name);
+	printf("=====================\n\n");
+	test_section("Testing all characters (0-255)");
+	c = 0;
+	while (c <= 255)
+	{
+		assert_int_eq(std_func(c), ft_func(c), "");
+		c++;
+	}
+	return (test_summary());
 }

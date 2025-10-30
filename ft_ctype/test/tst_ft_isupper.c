@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/30 00:34:30 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/10/30 00:34:31 by kjikuhar         ###   ########.fr       */
+/*   Created: 2025/10/30 01:00:00 by kjikuhar          #+#    #+#             */
+/*   Updated: 2025/10/30 01:48:54 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,64 +14,7 @@
 #include "test_framework.h"
 #include <ctype.h>
 
-TEST_INIT();
-
-static void	test_uppercase_letters(void)
-{
-	TEST_SECTION("Uppercase Letters (A-Z)");
-	ASSERT_EQ(isupper('A'), ft_isupper('A'), "%d");
-	ASSERT_EQ(isupper('M'), ft_isupper('M'), "%d");
-	ASSERT_EQ(isupper('Z'), ft_isupper('Z'), "%d");
-}
-
-static void	test_lowercase_letters(void)
-{
-	TEST_SECTION("Lowercase Letters");
-	ASSERT_EQ(isupper('a'), ft_isupper('a'), "%d");
-	ASSERT_EQ(isupper('m'), ft_isupper('m'), "%d");
-	ASSERT_EQ(isupper('z'), ft_isupper('z'), "%d");
-}
-
-static void	test_non_alphabetic(void)
-{
-	TEST_SECTION("Non-Alphabetic Characters");
-	ASSERT_EQ(isupper('0'), ft_isupper('0'), "%d");
-	ASSERT_EQ(isupper('9'), ft_isupper('9'), "%d");
-	ASSERT_EQ(isupper(' '), ft_isupper(' '), "%d");
-	ASSERT_EQ(isupper('!'), ft_isupper('!'), "%d");
-	ASSERT_EQ(isupper('@'), ft_isupper('@'), "%d");
-}
-
-static void	test_standard_compatibility(void)
-{
-	int	c;
-
-	TEST_SECTION("Standard Library Compatibility");
-	c = 0;
-	while (c <= 255)
-	{
-		if (!!isupper(c) != !!ft_isupper(c))
-		{
-			printf("FAIL at char %d: std=%d, ft=%d\n", c, !!isupper(c),
-				!!ft_isupper(c));
-			g_test_count++;
-		}
-		else
-		{
-			g_test_count++;
-			g_pass_count++;
-		}
-		c++;
-	}
-}
-
 int	main(void)
 {
-	printf("ft_isupper Automated Test Suite\n");
-	printf("===============================\n\n");
-	test_uppercase_letters();
-	test_lowercase_letters();
-	test_non_alphabetic();
-	test_standard_compatibility();
-	TEST_SUMMARY();
+	return (test_ctype_all("isupper", isupper, ft_isupper));
 }

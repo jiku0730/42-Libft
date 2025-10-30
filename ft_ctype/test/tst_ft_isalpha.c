@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/30 00:33:32 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/10/30 00:33:33 by kjikuhar         ###   ########.fr       */
+/*   Created: 2025/10/30 01:00:00 by kjikuhar          #+#    #+#             */
+/*   Updated: 2025/10/30 01:42:43 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,67 +14,7 @@
 #include "test_framework.h"
 #include <ctype.h>
 
-TEST_INIT();
-
-static void	test_lowercase_letters(void)
-{
-	TEST_SECTION("Lowercase Letters");
-	ASSERT_EQ(isalpha('a'), ft_isalpha('a'), "%d");
-	ASSERT_EQ(isalpha('m'), ft_isalpha('m'), "%d");
-	ASSERT_EQ(isalpha('z'), ft_isalpha('z'), "%d");
-}
-
-static void	test_uppercase_letters(void)
-{
-	TEST_SECTION("Uppercase Letters");
-	ASSERT_EQ(isalpha('A'), ft_isalpha('A'), "%d");
-	ASSERT_EQ(isalpha('M'), ft_isalpha('M'), "%d");
-	ASSERT_EQ(isalpha('Z'), ft_isalpha('Z'), "%d");
-}
-
-static void	test_non_alphabetic(void)
-{
-	TEST_SECTION("Non-Alphabetic Characters");
-	ASSERT_EQ(isalpha('0'), ft_isalpha('0'), "%d");
-	ASSERT_EQ(isalpha('9'), ft_isalpha('9'), "%d");
-	ASSERT_EQ(isalpha(' '), ft_isalpha(' '), "%d");
-	ASSERT_EQ(isalpha('!'), ft_isalpha('!'), "%d");
-	ASSERT_EQ(isalpha('@'), ft_isalpha('@'), "%d");
-	ASSERT_EQ(isalpha('['), ft_isalpha('['), "%d");
-	ASSERT_EQ(isalpha('`'), ft_isalpha('`'), "%d");
-	ASSERT_EQ(isalpha('{'), ft_isalpha('{'), "%d");
-}
-
-static void	test_standard_compatibility(void)
-{
-	int	c;
-
-	TEST_SECTION("Standard Library Compatibility");
-	c = 0;
-	while (c <= 255)
-	{
-		if (!!isalpha(c) != !!ft_isalpha(c))
-		{
-			printf("FAIL at char %d: std=%d, ft=%d\n", c, !!isalpha(c),
-				!!ft_isalpha(c));
-			g_test_count++;
-		}
-		else
-		{
-			g_test_count++;
-			g_pass_count++;
-		}
-		c++;
-	}
-}
-
 int	main(void)
 {
-	printf("ft_isalpha Automated Test Suite\n");
-	printf("===============================\n\n");
-	test_lowercase_letters();
-	test_uppercase_letters();
-	test_non_alphabetic();
-	test_standard_compatibility();
-	TEST_SUMMARY();
+	return (test_ctype_all("isalpha", isalpha, ft_isalpha));
 }

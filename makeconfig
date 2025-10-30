@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makeconfig                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+         #
+#    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/30 14:37:47 by kjikuhar          #+#    #+#              #
-#    Updated: 2025/07/16 18:25:17 by kei2003730       ###   ########.fr        #
+#    Updated: 2025/10/30 01:51:39 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,48 +95,26 @@ norminette:
 
 # test
 test: re
-	@echo "$(CYAN)$(BOLD)========================================="
-	@echo "    Running All Unit Tests"
-	@echo "=========================================$(RESET)"
-	@if [ ! -d "$(TESTDIR)" ]; then \
-		printf "$(RED)$(BOLD)Error: Test directory $(TESTDIR) not found$(RESET)\n"; \
-		exit 1; \
-	fi
+	@echo "$(CYAN)$(BOLD)Running All Unit Tests$(RESET)"
+	@[ -d "$(TESTDIR)" ] || { echo "$(RED)Error: $(TESTDIR) not found$(RESET)"; exit 1; }
 	@TOTAL=0; PASSED=0; FAILED=0; \
-	for test_file in $(TESTDIR)/tst_*.c; do \
-		if [ -f "$$test_file" ]; then \
-			func_name=$$(basename $$test_file .c | sed 's/tst_//'); \
-			printf "$(BLUE)$(BOLD)==== Testing $$func_name ====$(RESET)\n"; \
-			TOTAL=$$((TOTAL + 1)); \
-			if $(CC) $(CFLAGS) $(TEST_FRAME_DIR) $$test_file -o test_$$func_name $(NAME) 2>/dev/null; then \
-				if ./test_$$func_name > test_output_$$func_name 2>&1; then \
-					printf "$(GREEN)✓ PASS: $$func_name$(RESET)\n"; \
-					PASSED=$$((PASSED + 1)); \
-				else \
-					printf "$(RED)✗ FAIL: $$func_name$(RESET)\n"; \
-					cat test_output_$$func_name; \
-					FAILED=$$((FAILED + 1)); \
-				fi; \
-				rm -f test_$$func_name test_output_$$func_name; \
-			else \
-				printf "$(RED)✗ BUILD FAIL: $$func_name$(RESET)\n"; \
-				FAILED=$$((FAILED + 1)); \
-			fi; \
-			echo ""; \
+	for test in $(TESTDIR)/tst_*.c; do \
+		[ -f "$$test" ] || continue; \
+		name=$$(basename $$test .c | sed 's/tst_//'); \
+		TOTAL=$$((TOTAL + 1)); \
+		if $(CC) $(CFLAGS) $(TEST_FRAME_DIR) $$test -o test_$$name $(NAME) 2>/dev/null && \
+		   ./test_$$name > /tmp/test_out 2>&1; then \
+			printf "$(GREEN)✓ $$name$(RESET)\n"; \
+			PASSED=$$((PASSED + 1)); \
+		else \
+			printf "$(RED)✗ $$name$(RESET)\n"; \
+			cat /tmp/test_out 2>/dev/null; \
+			FAILED=$$((FAILED + 1)); \
 		fi; \
+		rm -f test_$$name /tmp/test_out; \
 	done; \
-	echo "$(CYAN)$(BOLD)=========================================";\
-	echo "    Test Summary"; \
-	echo "=========================================$(RESET)"; \
-	printf "$(GREEN)$(BOLD)Passed: $$PASSED$(RESET)\n"; \
-	printf "$(RED)$(BOLD)Failed: $$FAILED$(RESET)\n"; \
-	printf "$(BLUE)$(BOLD)Total:  $$TOTAL$(RESET)\n"; \
-	if [ $$FAILED -eq 0 ]; then \
-		printf "$(GREEN)$(BOLD)🎉 All tests passed!$(RESET)\n"; \
-	else \
-		printf "$(RED)$(BOLD)❌ Some tests failed!$(RESET)\n"; \
-		exit 1; \
-	fi
+	echo "$(CYAN)Passed: $$PASSED / Total: $$TOTAL$(RESET)"; \
+	[ $$FAILED -eq 0 ] && echo "$(GREEN)🎉 All tests passed!$(RESET)" || { echo "$(RED)❌ $$FAILED failed$(RESET)"; exit 1; }
 
 # MAKECMDGOALS から "unit_test" を除いた残りを TARGETS に、
 # さらに先頭要素を FUNC に
