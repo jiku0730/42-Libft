@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 21:07:26 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/09/29 14:59:18 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/11/06 20:44:14 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ char	**ft_split(char const *s, char c)
 	char	**splitted;
 	char	**p;
 
+	if (!s)
+		return (NULL);
 	splitted = malloc(sizeof(char *) * (count_words_(s, c) + 1));
 	if (!splitted)
 		return (NULL);
