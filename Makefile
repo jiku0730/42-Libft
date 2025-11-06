@@ -6,7 +6,7 @@
 #    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/04 16:00:02 by kjikuhar          #+#    #+#              #
-#    Updated: 2025/11/06 05:12:36 by kjikuhar         ###   ########.fr        #
+#    Updated: 2025/11/06 17:19:35 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRCS	=	conversion/ft_atoi.c \
 			string/ft_strdup.c \
 			string/ft_striteri.c \
 			string/ft_strjoin.c \
+			string/ft_strjoin3.c \
 			string/ft_strlcat.c \
 			string/ft_strlcpy.c \
 			string/ft_strlen.c \
