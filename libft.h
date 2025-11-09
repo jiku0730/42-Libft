@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 14:55:13 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/11/06 21:38:21 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/11/09 23:07:37 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,12 @@ int					ft_max_int(int a, int b, int *m);
 long				ft_max_long(long a, long b);
 long long			ft_max_long_long(long long a, long long b);
 size_t				ft_max_size_t(size_t a, size_t b);
+unsigned int		ft_max_unsigned_int(unsigned int a, unsigned int b);
 int					ft_min_int(int a, int b);
 long				ft_min_long(long a, long b);
 long long			ft_min_long_long(long long a, long long b);
 size_t				ft_min_size_t(size_t a, size_t b);
+unsigned int		ft_min_unsigned_int(unsigned int a, unsigned int b);
 
 // output
 void				ft_putchar_fd(char c, int fd);
