@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 14:55:13 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/11/09 23:07:37 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/11/11 02:33:15 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ long				ft_min_long(long a, long b);
 long long			ft_min_long_long(long long a, long long b);
 size_t				ft_min_size_t(size_t a, size_t b);
 unsigned int		ft_min_unsigned_int(unsigned int a, unsigned int b);
+
+// sort
+void				ft_sort_int_array(int *array, size_t len);
+void				ft_qsort_int(int *array, int left, int right);
+int					ft_partition_int(int *array, int left, int right);
 
 // output
 void				ft_putchar_fd(char c, int fd);

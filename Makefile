@@ -6,7 +6,7 @@
 #    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/04 16:00:02 by kjikuhar          #+#    #+#              #
-#    Updated: 2025/11/06 17:19:35 by kjikuhar         ###   ########.fr        #
+#    Updated: 2025/11/11 02:33:13 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,10 @@ SRCS	=	conversion/ft_atoi.c \
 			original/ft_max.c \
 			original/ft_min.c \
 			original/ft_isspace.c \
-			original/is_blank_line.c
+			original/is_blank_line.c \
+			sort/ft_sort_int_array.c \
+			sort/ft_qsort_int.c \
+			sort/ft_partition_int.c
 
 BLACK	:=	\033[30m
 RED		:=	\033[31m
