@@ -67,10 +67,12 @@ int					ft_max_int(int a, int b, int *m);
 long				ft_max_long(long a, long b);
 long long			ft_max_long_long(long long a, long long b);
 size_t				ft_max_size_t(size_t a, size_t b);
+unsigned int		ft_max_unsigned_int(unsigned int a, unsigned int b);
 int					ft_min_int(int a, int b);
 long				ft_min_long(long a, long b);
 long long			ft_min_long_long(long long a, long long b);
 size_t				ft_min_size_t(size_t a, size_t b);
+unsigned int		ft_min_unsigned_int(unsigned int a, unsigned int b);
 
 // sort
 void				ft_sort_int_array(int *array, size_t len);
